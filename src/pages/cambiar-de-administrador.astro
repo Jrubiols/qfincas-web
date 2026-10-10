@@ -5,15 +5,22 @@ import Cta from '../components/Cta.astro';
 
 const preguntas = [
   { p: '¿Quién decide el cambio de administrador?', r: 'La junta de propietarios. El nombramiento y el cese del administrador se acuerdan en junta, ordinaria o extraordinaria. Te ayudamos a preparar el punto del orden del día.' },
+  { p: '¿Qué mayoría hace falta?', r: 'Basta con mayoría simple (art. 17.7 LPH): en primera convocatoria, la mayoría de propietarios que represente también la mayoría de cuotas; en segunda, la mayoría de los asistentes.' },
+  { p: '¿Y si el presidente no quiere convocar la junta?', r: 'La junta también la puede convocar el 25 % de los propietarios, o los que representen al menos el 25 % de las cuotas (art. 16.1 LPH). Te ayudamos a redactar la convocatoria.' },
   { p: '¿Hay que esperar a que termine el año?', r: 'No necesariamente. El cambio puede acordarse en cualquier junta. Revisamos contigo las condiciones del contrato con el administrador actual.' },
   { p: '¿Qué pasa con la documentación de la comunidad?', r: 'El administrador saliente debe entregar libros de actas, contabilidad, contratos y demás documentos. Nos encargamos de pedirlos y de revisar que no falte nada.' },
   { p: '¿Los vecinos tienen que hacer algo?', r: 'Nada. Les damos de alta en TuComunidad para que puedan consultar actas y cuentas y comunicar averías desde el primer día.' },
 ];
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((x) => ({ '@type': 'Question', name: x.p, acceptedAnswer: { '@type': 'Answer', text: x.r } })),
+};
 ---
 <Base titulo="Cambiar de administrador de fincas" descripcion="Cómo cambiar de administrador de fincas en Madrid en 4 pasos. Qfincas se encarga del traspaso de documentación, cuentas y contratos.">
   <CabeceraPagina
     titulo="Cambiar de administrador de fincas"
-    lead="Si tu comunidad no está contenta con su administrador, cambiar es sencillo. Nosotros nos encargamos de todo el traspaso."
+    lead="Si tu comunidad no está contenta con su administrador, cambiar es sencillo. Como somos abogados, te explicamos qué dice la ley y nos encargamos de todo el traspaso."
     migas={[{ label: 'Cambiar de administrador' }]}
   >
     <div class="botones" style="margin-top:24px"><a class="btn btn--primario" href="/contacto/#presupuesto">Pedir presupuesto</a></div>
@@ -39,6 +46,8 @@ const preguntas = [
       </div>
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
   <Cta titulo="¿Lo llevamos a tu próxima junta?" texto="Te preparamos el presupuesto para que los vecinos puedan decidir." />
 </Base>

@@ -3,14 +3,29 @@ import Base from '../layouts/Base.astro';
 import PresupuestoForm from '../components/PresupuestoForm.astro';
 import { servicios } from '../data/servicios.js';
 import { site } from '../data/site.js';
+
+// PENDIENTE: si Qfincas publica un precio orientativo o confirma "sin permanencia", añadirlo aquí.
+const preguntas = [
+  { p: '¿Cuánto cuesta el administrador de fincas?', r: 'Depende del número de viviendas, de si hay garaje, piscina o empleados, y de la tarifa que elijas. Cuéntanos cómo es tu comunidad y te enviamos un presupuesto cerrado sin compromiso.' },
+  { p: '¿Podemos cambiar de tarifa más adelante?', r: 'Sí. Puedes cambiar de tarifa en cualquier momento del contrato.' },
+  { p: '¿Cómo cambiamos de administrador?', r: 'La junta de propietarios acuerda el cambio y nosotros nos encargamos de pedir toda la documentación al administrador anterior. Te lo explicamos paso a paso en nuestra página sobre el cambio de administrador.' },
+  { p: '¿Sois administradores colegiados?', r: `Sí. Estamos colegiados en el Colegio de Administradores de Fincas de Madrid y en el Colegio de Abogados de Madrid (${site.colegiado}).` },
+  { p: '¿Qué pasa si hay una urgencia fuera de horario?', r: 'Tienes un canal de avisos e incidencias 24 horas. Además, los vecinos pueden comunicar averías y seguir su estado en TuComunidad.' },
+  { p: '¿Los vecinos pueden ver las cuentas y las actas?', r: 'Sí. Desde TuComunidad cada propietario consulta las actas, el presupuesto y el estado económico. El presidente recibe además un informe económico semanal.' },
+];
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((x) => ({ '@type': 'Question', name: x.p, acceptedAnswer: { '@type': 'Answer', text: x.r } })),
+};
 ---
 <Base descripcion="Administración de fincas en Madrid con abogados expertos en propiedad horizontal. Cuentas claras, informe semanal al presidente y reclamación de impagos sin coste. Pide presupuesto.">
   <section class="hero">
     <img class="hero__fondo" src="/img/madrid.jpg" alt="" fetchpriority="high" width="1920" height="1050" />
     <div class="contenedor">
       <span class="antetitulo" style="color:#ff8a8f">Administración de fincas · Madrid</span>
-      <h1>Tu comunidad, en buenas manos</h1>
-      <p class="lead">Administradores de fincas y abogados expertos en propiedad horizontal. Aportamos comunicación, proximidad, eficiencia y transparencia a tu comunidad.</p>
+      <h1>Tu administrador de fincas, con abogados incluidos</h1>
+      <p class="lead">Somos administradores de fincas y abogados expertos en propiedad horizontal. Cuando surge un moroso, una obra o un conflicto entre vecinos, no tienes que buscar a nadie más.</p>
       <div class="botones">
         <a class="btn btn--primario" href="#presupuesto">Pide presupuesto gratis</a>
         <a class="btn btn--claro" href="/servicios/">Ver servicios</a>
@@ -49,6 +64,19 @@ import { site } from '../data/site.js';
             <span class="tarjeta__mas">Ver servicio →</span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <span class="antetitulo">Incluido sin coste extra</span>
+      <h2>Lo que otros cobran aparte, con nosotros va incluido</h2>
+      <div class="rejilla" style="margin-top:32px">
+        <div class="tarjeta"><h3>Reclamación de impagos</h3><p>Reclamamos a los morosos por la vía extrajudicial sin coste para la comunidad.</p></div>
+        <div class="tarjeta"><h3>Asesoría jurídica</h3><p>Resolvemos tus dudas sobre la Ley de Propiedad Horizontal sin cobrar la consulta.</p></div>
+        <div class="tarjeta"><h3>Consulta técnica</h3><p>Nuestros arquitectos e ingenieros atienden gratis tus consultas sobre obras e instalaciones.</p></div>
+        <div class="tarjeta"><h3>Descuentos</h3><p>Negociamos con las empresas de mantenimiento para bajar la cuota de tu comunidad.</p></div>
       </div>
     </div>
   </section>
@@ -134,6 +162,16 @@ import { site } from '../data/site.js';
       <p style="margin-top:24px"><a href="/certificaciones/">Ver certificaciones →</a></p>
     </div>
   </section>
+
+  <section class="seccion">
+    <div class="contenedor prosa" style="margin:0 auto">
+      <h2>Preguntas frecuentes</h2>
+      <div class="preguntas">
+        {preguntas.map((x) => <details><summary>{x.p}</summary><p>{x.r}</p></details>)}
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 
   <section class="seccion" id="presupuesto">
     <div class="contenedor dos-col" style="align-items:start">

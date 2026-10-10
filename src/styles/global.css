@@ -17,6 +17,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -113,7 +114,7 @@ p { margin: 0 0 1em; }
 .hero__fondo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(32,15,17,.92) 0%, rgba(32,15,17,.75) 45%, rgba(32,15,17,.25) 100%); }
 .hero .contenedor { position: relative; z-index: 1; padding-top: 96px; padding-bottom: 96px; }
-.hero h1 { color: #fff; max-width: 15ch; }
+.hero h1 { color: #fff; max-width: 20ch; }
 .hero .lead { color: #eadede; }
 .hero__sellos { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; font-size: .95rem; color: #eadede; list-style: none; padding: 0; }
 .hero__sellos li::before { content: '✓'; color: #ff7a7f; font-weight: 800; margin-right: 8px; }
