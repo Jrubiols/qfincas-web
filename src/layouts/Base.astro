@@ -11,6 +11,11 @@ const actual = (href) => (href === '/' ? ruta === '/' : ruta.startsWith(href));
 
 const grupos = ['Administración', 'Derecho'];
 
+// Netlify define URL con la dirección del despliegue. Mientras no sea qfincas.com
+// (p. ej. qfincas.netlify.app) se pide a Google que no indexe, para no duplicar la web actual.
+const urlDespliegue = process.env.URL || '';
+const noIndexar = urlDespliegue !== '' && !urlDespliegue.includes('qfincas.com');
+
 // Datos estructurados para que Google muestre dirección, teléfono y horario
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -43,6 +48,7 @@ const jsonLd = {
   <title>{tituloCompleto}</title>
   <meta name="description" content={descripcion} />
   <link rel="canonical" href={url} />
+  {noIndexar && <meta name="robots" content="noindex, nofollow" />}
   <link rel="icon" type="image/png" href="/img/favicon.png" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
