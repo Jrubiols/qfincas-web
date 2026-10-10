@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import { site } from '../../data/site.js';
+---
+<Base titulo="Trabaja con nosotros" descripcion="Únete al equipo de Qfincas, administración de fincas y despacho de abogados en Madrid.">
+  <CabeceraPagina
+    titulo="Trabaja con nosotros"
+    lead="Buscamos personas que quieran marcar la diferencia en la administración de fincas."
+    migas={[{ label: 'Nosotros', href: '/nosotros/' }, { label: 'Trabaja con nosotros' }]}
+  />
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <p>Si te interesa formar parte de nuestro equipo, envíanos tu currículum a <a href={`mailto:${site.email}?subject=Candidatura`}>{site.email}</a> indicando en el asunto «Candidatura» y el puesto que te interesa.</p>
+      <p><a class="btn btn--primario" href={`mailto:${site.email}?subject=Candidatura`}>Enviar mi CV</a></p>
+    </div>
+  </section>
+</Base>

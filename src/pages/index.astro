@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import PresupuestoForm from '../components/PresupuestoForm.astro';
+import { servicios } from '../data/servicios.js';
+import { site } from '../data/site.js';
+---
+<Base descripcion="Administración de fincas en Madrid con abogados expertos en propiedad horizontal. Cuentas claras, informe semanal al presidente y reclamación de impagos sin coste. Pide presupuesto.">
+  <section class="hero">
+    <img class="hero__fondo" src="/img/madrid.jpg" alt="" fetchpriority="high" width="1920" height="1050" />
+    <div class="contenedor">
+      <span class="antetitulo" style="color:#ff8a8f">Administración de fincas · Madrid</span>
+      <h1>Tu comunidad, en buenas manos</h1>
+      <p class="lead">Administradores de fincas y abogados expertos en propiedad horizontal. Aportamos comunicación, proximidad, eficiencia y transparencia a tu comunidad.</p>
+      <div class="botones">
+        <a class="btn btn--primario" href="#presupuesto">Pide presupuesto gratis</a>
+        <a class="btn btn--claro" href="/servicios/">Ver servicios</a>
+      </div>
+      <ul class="hero__sellos">
+        <li>Abogado colegiado ({site.colegiado})</li>
+        <li>Más de 25 años en la profesión</li>
+        <li>Informe económico semanal al presidente</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="contenedor">
+    <div class="cifras cifras--flotante">
+      <div class="cifra"><strong>+25 años</strong><span>de colegiación como administradores de fincas</span></div>
+      <div class="cifra"><strong>Abogados</strong><span>colegiados en el Colegio de Abogados de Madrid</span></div>
+      <div class="cifra"><strong>Semanal</strong><span>informe económico al presidente de la comunidad</span></div>
+      <div class="cifra"><strong>Sin coste</strong><span>reclamación extrajudicial de impagos</span></div>
+    </div>
+  </div>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="centrado">
+        <span class="antetitulo">Servicios</span>
+        <h2>Todo lo que necesita tu comunidad, en un solo despacho</h2>
+        <p class="lead">Administración, derecho y asesoría técnica: no tendrás que buscar a nadie más.</p>
+      </div>
+      <div class="rejilla" style="margin-top:40px">
+        {servicios.map((s) => (
+          <a class="tarjeta tarjeta--enlace" href={`/servicios/${s.slug}/`}>
+            <img class="tarjeta__img" src={s.imagen} alt="" loading="lazy" width="860" height="484" />
+            <span class="etiqueta">{s.grupo}</span>
+            <h3>{s.titulo}</h3>
+            <p>{s.resumen}</p>
+            <span class="tarjeta__mas">Ver servicio →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--oscura">
+    <div class="contenedor">
+      <span class="antetitulo" style="color:#ff8a8f">Cómo trabajamos</span>
+      <h2>Cuentas claras y siempre localizables</h2>
+      <p class="lead" style="color:#cfc6c6">Nuestro estilo es fácil de entender: claridad y sencillez, llamando a las cosas por su nombre.</p>
+      <div class="rejilla" style="margin-top:40px">
+        <div>
+          <h3>Transparencia</h3>
+          <ul class="lista-check">
+            <li>Cuenta bancaria a nombre de la comunidad, controlada por el presidente</li>
+            <li>Informe económico semanal al presidente</li>
+            <li>Informe trimestral y resumen anual a cada propietario</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Atención</h3>
+          <ul class="lista-check">
+            <li>Canal de avisos e incidencias 24 horas</li>
+            <li>Atención personal de lunes a jueves de 9 a 18 y viernes de 9 a 15</li>
+            <li>Visitas periódicas a tu finca</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Control</h3>
+          <ul class="lista-check">
+            <li>Negociamos con proveedores para reducir tu cuota</li>
+            <li>Revisamos que cada servicio cumpla lo contratado</li>
+            <li>Control del presupuesto, cobros, pagos y morosos</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Juntas</h3>
+          <ul class="lista-check">
+            <li>Preparación de la junta con el presidente</li>
+            <li>Actas con la transcripción literal de acuerdos y votaciones</li>
+            <li>Ejecución inmediata de lo acordado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor dos-col">
+      <img src="/img/acuerdo.jpg" alt="Firma de un acuerdo en el despacho" loading="lazy" width="960" height="640" />
+      <div>
+        <span class="antetitulo">¿No estás contento con tu administrador?</span>
+        <h2>Cambiar de administrador es más fácil de lo que crees</h2>
+        <p class="lead">Nos encargamos de todo el traspaso: tú solo tienes que llevarlo a la junta.</p>
+        <ol class="lista-check" style="margin:24px 0">
+          <li>Te enviamos un presupuesto adaptado a tu comunidad</li>
+          <li>La junta de propietarios aprueba el cambio</li>
+          <li>Pedimos la documentación al administrador anterior</li>
+          <li>Damos de alta a los vecinos en TuComunidad</li>
+        </ol>
+        <a class="btn btn--primario" href="/cambiar-de-administrador/">Cómo funciona el cambio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <span class="antetitulo">Trayectoria</span>
+      <h2>Formamos a otros administradores</h2>
+      <div class="rejilla" style="margin-top:32px">
+        <div class="tarjeta">
+          <h3>25 años de colegiación</h3>
+          <p>Reconocimiento del Colegio Profesional de Administradores de Fincas de Madrid por 25 años de profesión.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Docencia</h3>
+          <p>Director y profesora del curso de especialización en administración de fincas de Economist & Jurist, y del Máster Inmobiliario de ISDE.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>En los medios</h3>
+          <p>Artículos en la revista Inmueble y aparición en RTVE explicando el dividendo digital a las comunidades.</p>
+        </div>
+      </div>
+      <p style="margin-top:24px"><a href="/certificaciones/">Ver certificaciones →</a></p>
+    </div>
+  </section>
+
+  <section class="seccion" id="presupuesto">
+    <div class="contenedor dos-col" style="align-items:start">
+      <div>
+        <span class="antetitulo">Presupuesto sin compromiso</span>
+        <h2>Cuéntanos cómo es tu comunidad</h2>
+        <p class="lead">Rellena estos tres pasos y te enviaremos un presupuesto adaptado. Si lo prefieres, llámanos.</p>
+        <p><a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar al {site.telefono}</a></p>
+        <div class="tarjeta" style="margin-top:32px">
+          <h3>¿Ya eres vecino de una comunidad Qfincas?</h3>
+          <p>Consulta actas y presupuestos, o comunica una avería, desde TuComunidad.</p>
+          <div class="botones">
+            <a class="btn btn--primario btn--peq" href={site.tucomunidad} target="_blank" rel="noopener">Entrar en TuComunidad</a>
+            <a class="btn btn--secundario btn--peq" href="/vecinos/">Ayuda para vecinos</a>
+          </div>
+        </div>
+      </div>
+      <PresupuestoForm />
+    </div>
+  </section>
+</Base>

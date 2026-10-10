@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import Cta from '../../components/Cta.astro';
+
+// Noticias de la web antigua. Pendiente: migrar el texto completo de cada una y poner su fecha.
+// Las preguntas de vecinos que había aquí se han movido a /vecinos/.
+const entradas = [
+  { t: 'Entrega del diploma por 25 años de colegiación', d: 'El Colegio de Administradores de Fincas de Madrid reconoce los 25 años de profesión de Alberto Cano.', tipo: 'Noticia' },
+  { t: 'Carta de la presidencia del CAF Madrid por 25 años de profesión', d: 'Felicitación de la presidencia del Colegio por la trayectoria profesional.', tipo: 'Noticia' },
+  { t: 'Docencia en Economist & Jurist', d: 'Alberto Cano Alsúa y María Galán participan como director y profesora en el curso de especialización en administración de fincas y real estate management.', tipo: 'Noticia' },
+  { t: 'Dividendo digital: Alberto Cano en RTVE', d: 'Aparición en RTVE explicando cómo afecta el dividendo digital a las comunidades de propietarios.', tipo: 'Medios' },
+  { t: 'Limitación de uso y destino de viviendas y locales en edificios', d: 'Cambios de local a vivienda, de vivienda a local o uso exclusivo de oficinas: qué dice la ley y cómo resolver estas dudas.', tipo: 'Artículo' },
+];
+---
+<Base titulo="Blog" descripcion="Noticias de Qfincas y artículos sobre propiedad horizontal, juntas, morosidad y comunidades de propietarios.">
+  <CabeceraPagina
+    titulo="Blog"
+    lead="Noticias del despacho y artículos para entender mejor tu comunidad."
+    migas={[{ label: 'Blog' }]}
+  />
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="rejilla">
+        {entradas.map((e) => (
+          <article class="tarjeta">
+            <span class="etiqueta">{e.tipo}</span>
+            <h2 style="font-size:1.2rem">{e.t}</h2>
+            <p>{e.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import { site } from '../data/site.js';
+// PENDIENTE: revisar con Qfincas (y su asesor de protección de datos) antes de publicar.
+---
+<Base titulo="Política de privacidad">
+  <CabeceraPagina titulo="Política de privacidad" migas={[{ label: 'Privacidad' }]} />
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <h2>Responsable</h2>
+      <p>[Razón social], NIF [NIF], {site.direccion}, {site.ciudad}. Contacto: {site.email}.</p>
+      <h2>Qué datos tratamos y para qué</h2>
+      <p>Los datos que nos envías en el formulario de presupuesto o por correo (nombre, teléfono, email y datos de tu comunidad) se usan solo para responder a tu solicitud y, si nos contratas, para prestar el servicio.</p>
+      <h2>Base legal</h2>
+      <p>Tu consentimiento al enviar el formulario y, en su caso, la ejecución del contrato.</p>
+      <h2>Cuánto tiempo los guardamos</h2>
+      <p>Mientras se tramita tu solicitud y, si no llegamos a contratar, un máximo de [12] meses. Si eres cliente, durante la relación y los plazos legales posteriores.</p>
+      <h2>Con quién los compartimos</h2>
+      <p>No cedemos tus datos a terceros salvo obligación legal. El formulario se gestiona a través de nuestro proveedor de alojamiento web [Netlify], que actúa como encargado del tratamiento.</p>
+      <h2>Tus derechos</h2>
+      <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación o portabilidad escribiendo a {site.email}. También puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+    </div>
+  </section>
+</Base>

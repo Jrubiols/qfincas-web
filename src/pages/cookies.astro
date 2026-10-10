@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+---
+<Base titulo="Política de cookies">
+  <CabeceraPagina titulo="Política de cookies" migas={[{ label: 'Cookies' }]} />
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <p>Esta web no usa cookies de publicidad ni de seguimiento, por eso no te mostramos ningún aviso de cookies.</p>
+      <p>Las estadísticas de visitas se obtienen con una herramienta que no instala cookies ni identifica a los visitantes.</p>
+      <p>Al pulsar en «Entrar en TuComunidad» sales a una web de un tercero, que tiene su propia política de cookies.</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,113 @@
+---
+// Formulario de presupuesto en 3 pasos.
+// Funciona con Netlify Forms (atributo data-netlify): los envíos llegan al panel de Netlify
+// y se reenvían por correo a secretaría. Sin JavaScript se muestran los 3 pasos seguidos.
+import { servicios } from '../data/servicios.js';
+---
+<form class="formulario" name="presupuesto" method="POST" action="/gracias/" data-netlify="true" netlify-honeypot="web" id="form-presupuesto">
+  <input type="hidden" name="form-name" value="presupuesto" />
+  <p class="oculto"><label>No rellenar: <input name="web" /></label></p>
+
+  <div class="pasos-form" aria-hidden="true"><span class="activo"></span><span></span><span></span></div>
+
+  <div class="paso-form activo" data-paso="1">
+    <h3>¿Qué necesitas administrar?</h3>
+    <div class="campo">
+      <fieldset>
+        <legend>Tipo de inmueble</legend>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="tipo" value="Comunidad de propietarios" required checked /> Comunidad de propietarios</label>
+          <label class="opcion"><input type="radio" name="tipo" value="Edificio de un solo propietario" /> Edificio de un solo propietario</label>
+          <label class="opcion"><input type="radio" name="tipo" value="Viviendas en alquiler" /> Viviendas en alquiler</label>
+          <label class="opcion"><input type="radio" name="tipo" value="Otro" /> Otro</label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="fila-2">
+      <div class="campo">
+        <label for="viviendas">Nº de viviendas y locales</label>
+        <input id="viviendas" name="viviendas" type="number" min="1" inputmode="numeric" placeholder="Ej. 24" />
+      </div>
+      <div class="campo">
+        <label for="zona">Barrio o municipio</label>
+        <input id="zona" name="zona" type="text" placeholder="Ej. Chamberí" />
+      </div>
+    </div>
+  </div>
+
+  <div class="paso-form" data-paso="2">
+    <h3>¿Qué servicios te interesan?</h3>
+    <div class="campo">
+      <fieldset>
+        <legend class="oculto">Servicios</legend>
+        <div class="opciones">
+          {servicios.map((s) => (
+            <label class="opcion"><input type="checkbox" name="servicios" value={s.corto} checked={s.slug === 'administracion-de-fincas'} /> {s.corto}</label>
+          ))}
+        </div>
+      </fieldset>
+    </div>
+    <div class="campo">
+      <label for="mensaje">Cuéntanos algo más (opcional)</label>
+      <textarea id="mensaje" name="mensaje" rows="3" placeholder="Ej. queremos cambiar de administrador antes de la próxima junta"></textarea>
+    </div>
+  </div>
+
+  <div class="paso-form" data-paso="3">
+    <h3>¿Dónde te enviamos el presupuesto?</h3>
+    <div class="campo">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="nombre" type="text" autocomplete="name" required />
+    </div>
+    <div class="fila-2">
+      <div class="campo">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required />
+      </div>
+      <div class="campo">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+    </div>
+    <div class="campo">
+      <label class="legal-check">
+        <input type="checkbox" name="privacidad" required />
+        <span>He leído y acepto la <a href="/privacidad/" target="_blank">política de privacidad</a>. Usaremos tus datos solo para responder a esta solicitud.</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-nav">
+    <button type="button" class="btn btn--secundario" data-accion="atras" hidden>Atrás</button>
+    <button type="button" class="btn btn--primario" data-accion="siguiente">Siguiente</button>
+    <button type="submit" class="btn btn--primario" data-accion="enviar">Pedir presupuesto</button>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('form-presupuesto');
+  if (form) {
+    const pasos = [...form.querySelectorAll('.paso-form')];
+    const barras = [...form.querySelectorAll('.pasos-form span')];
+    const atras = form.querySelector('[data-accion="atras"]');
+    const siguiente = form.querySelector('[data-accion="siguiente"]');
+    const enviar = form.querySelector('[data-accion="enviar"]');
+    let i = 0;
+
+    const mostrar = (n) => {
+      i = n;
+      pasos.forEach((p, k) => p.classList.toggle('activo', k === i));
+      barras.forEach((b, k) => b.classList.toggle('activo', k <= i));
+      atras.hidden = i === 0;
+      siguiente.hidden = i === pasos.length - 1;
+      enviar.hidden = i !== pasos.length - 1;
+    };
+
+    // Solo se validan los campos del paso visible antes de avanzar
+    const pasoValido = () => [...pasos[i].querySelectorAll('input, select, textarea')].every((c) => c.reportValidity());
+
+    siguiente.addEventListener('click', () => { if (pasoValido()) mostrar(i + 1); });
+    atras.addEventListener('click', () => mostrar(i - 1));
+    mostrar(0);
+  }
+</script>

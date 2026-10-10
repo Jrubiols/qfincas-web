@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import PresupuestoForm from '../components/PresupuestoForm.astro';
+import { site } from '../data/site.js';
+// Enlace a Google Maps en vez de mapa incrustado: así no se instalan cookies de terceros.
+const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.direccion}, ${site.ciudad}`)}`;
+---
+<Base titulo="Contacto y presupuesto" descripcion={`Pide presupuesto a Qfincas o visítanos en ${site.direccion}, ${site.ciudad}. Teléfono ${site.telefono}.`}>
+  <CabeceraPagina
+    titulo="Contacto"
+    lead="Pídenos presupuesto sin compromiso o ven a vernos al despacho."
+    migas={[{ label: 'Contacto' }]}
+  />
+
+  <section class="seccion" id="presupuesto">
+    <div class="contenedor contenido-lateral">
+      <PresupuestoForm />
+      <aside class="lateral">
+        <div class="tarjeta">
+          <h3>Teléfono</h3>
+          <p><a href={`tel:${site.telefonoLink}`} style="font-size:1.3rem;font-weight:700">{site.telefono}</a></p>
+          <h3>Email</h3>
+          <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+          <h3>Despacho</h3>
+          <p>{site.direccion}<br />{site.ciudad}<br /><a href={mapa} target="_blank" rel="noopener">Cómo llegar →</a></p>
+          <h3>Horario</h3>
+          <ul style="list-style:none;padding:0;margin:0">
+            {site.horario.map((h) => <li>{h.dias}: {h.horas}</li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>

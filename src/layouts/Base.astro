@@ -1,0 +1,174 @@
+---
+import '../styles/global.css';
+import { site, nav } from '../data/site.js';
+import { servicios } from '../data/servicios.js';
+
+const { titulo, descripcion = site.lema, imagen = '/img/madrid.jpg' } = Astro.props;
+const tituloCompleto = titulo ? `${titulo} | Qfincas` : `Qfincas | ${site.lema}`;
+const url = new URL(Astro.url.pathname, Astro.site);
+const ruta = Astro.url.pathname;
+const actual = (href) => (href === '/' ? ruta === '/' : ruta.startsWith(href));
+
+const grupos = ['Administración', 'Derecho'];
+
+// Datos estructurados para que Google muestre dirección, teléfono y horario
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'LegalService'],
+  name: site.nombreLargo,
+  url: 'https://qfincas.com/',
+  logo: 'https://qfincas.com/img/logo.png',
+  image: 'https://qfincas.com/img/madrid.jpg',
+  telephone: '+34 915 44 83 24',
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.direccion,
+    addressLocality: site.ciudad,
+    postalCode: site.cp || undefined,
+    addressCountry: 'ES',
+  },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '18:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '09:00', closes: '15:00' },
+  ],
+  areaServed: 'Madrid',
+};
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{tituloCompleto}</title>
+  <meta name="description" content={descripcion} />
+  <link rel="canonical" href={url} />
+  <link rel="icon" type="image/png" href="/img/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:title" content={tituloCompleto} />
+  <meta property="og:description" content={descripcion} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={new URL(imagen, Astro.site)} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script is:inline>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera" id="cabecera">
+    <div class="barra-sup">
+      <div class="contenedor">
+        <span class="barra-sup__horario">L-J 9:00-18:00 · V 9:00-15:00</span>
+        <div class="barra-sup__datos">
+          <a href={`tel:${site.telefonoLink}`}>{site.telefono}</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.tucomunidad} target="_blank" rel="noopener">Acceso TuComunidad →</a>
+        </div>
+      </div>
+    </div>
+    <div class="contenedor cabecera__fila">
+      <a href="/" class="logo"><img src="/img/logo.png" alt="Q Fincas Soluciones" width="229" height="77" /></a>
+      <nav aria-label="Principal">
+        <ul class="menu" id="menu">
+          {nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={actual(item.href) ? 'page' : undefined}>{item.label}</a>
+              {item.children && (
+                <ul class="submenu">
+                  {item.children.map((c) => <li><a href={c.href}>{c.label}</a></li>)}
+                </ul>
+              )}
+              {item.servicios && (
+                <ul class="submenu submenu--ancho">
+                  {grupos.map((g) => (
+                    <li>
+                      <div class="submenu__grupo">{g}</div>
+                      <ul style="list-style:none;padding:0;margin:0">
+                        {servicios.filter((s) => s.grupo === g).map((s) => (
+                          <li><a href={`/servicios/${s.slug}/`}>{s.corto}</a></li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+          <li class="solo-movil"><a href="/vecinos/">Soy vecino</a></li>
+        </ul>
+      </nav>
+      <div class="cabecera__acciones">
+        <a class="btn btn--secundario btn--peq" href="/vecinos/">Soy vecino</a>
+        <a class="btn btn--primario btn--peq" href="/contacto/#presupuesto">Pide presupuesto</a>
+        <button class="boton-menu" id="boton-menu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <slot />
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div>
+          <a href="/" class="pie__logo"><img src="/img/logo.png" alt="Q Fincas Soluciones" width="229" height="77" loading="lazy" /></a>
+          <p>Administración de fincas y despacho de abogados especializado en propiedad horizontal, en Madrid.</p>
+        </div>
+        <div>
+          <h3>Servicios</h3>
+          <ul>{servicios.map((s) => <li><a href={`/servicios/${s.slug}/`}>{s.corto}</a></li>)}</ul>
+        </div>
+        <div>
+          <h3>Qfincas</h3>
+          <ul>
+            <li><a href="/nosotros/">Quiénes somos</a></li>
+            <li><a href="/certificaciones/">Certificaciones</a></li>
+            <li><a href="/tarifas/">Tarifas</a></li>
+            <li><a href="/cambiar-de-administrador/">Cambiar de administrador</a></li>
+            <li><a href="/vecinos/">Soy vecino</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/nosotros/trabaja/">Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href={`tel:${site.telefonoLink}`}>{site.telefono}</a></li>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li>{site.direccion}, {site.ciudad}</li>
+            {site.horario.map((h) => <li>{h.dias}: {h.horas}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div class="pie__legal">
+        <span>© {new Date().getFullYear()} {site.nombreLargo}</span>
+        <ul>
+          <li><a href="/aviso-legal/">Aviso legal</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+          <li><a href="/cookies/">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="barra-movil">
+    <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar</a>
+    {site.whatsapp && <a class="btn btn--secundario" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a>}
+    <a class="btn btn--primario" href="/contacto/#presupuesto">Presupuesto</a>
+  </div>
+
+  <script>
+    const cab = document.getElementById('cabecera');
+    const boton = document.getElementById('boton-menu');
+    boton?.addEventListener('click', () => {
+      const abierto = cab.classList.toggle('abierta');
+      boton.setAttribute('aria-expanded', String(abierto));
+    });
+  </script>
+</body>
+</html>

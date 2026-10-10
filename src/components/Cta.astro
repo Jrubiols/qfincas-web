@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site.js';
+const {
+  titulo = '¿Hablamos de tu comunidad?',
+  texto = 'Te preparamos un presupuesto sin compromiso, adaptado a tu comunidad.',
+} = Astro.props;
+---
+<section class="seccion">
+  <div class="contenedor">
+    <div class="cta">
+      <div>
+        <h2>{titulo}</h2>
+        <p>{texto}</p>
+      </div>
+      <div class="botones">
+        <a class="btn btn--primario" href="/contacto/#presupuesto">Pide presupuesto</a>
+        <a class="btn btn--claro" href={`tel:${site.telefonoLink}`}>Llama al {site.telefono}</a>
+      </div>
+    </div>
+  </div>
+</section>

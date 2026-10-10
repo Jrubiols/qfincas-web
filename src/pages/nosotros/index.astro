@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import Cta from '../../components/Cta.astro';
+---
+<Base titulo="Quiénes somos" descripcion="Qfincas: administradores de fincas y abogados en Madrid. Profesionalidad y compromiso, con visitas periódicas a tu finca y cuentas claras.">
+  <CabeceraPagina
+    titulo="Profesionalidad y compromiso"
+    lead="Tu tranquilidad y la de tus vecinos es nuestra meta. Te ofrecemos un servicio cualificado, personal y cercano, con visitas periódicas a tu finca y reuniones informativas contigo."
+    migas={[{ label: 'Nosotros' }]}
+  />
+
+  <section class="seccion">
+    <div class="contenedor dos-col">
+      <div>
+        <span class="antetitulo">El equipo</span>
+        <h2>Un despacho de administradores y abogados</h2>
+        <p>Qfincas está dirigido por <strong>Alberto Cano Alsúa</strong>, abogado colegiado en el Colegio de Abogados de Madrid y administrador de fincas con más de 25 años de colegiación. Junto a <strong>María Galán Martínez</strong>, imparte formación a otros administradores en Economist & Jurist y en el Máster Inmobiliario de ISDE.</p>
+        <p>Contamos además con arquitectos, ingenieros y técnicos que atienden gratuitamente las consultas de nuestras comunidades.</p>
+        <p><a href="/certificaciones/">Ver certificaciones →</a></p>
+      </div>
+      <img src="/img/nosotros.jpg" alt="Reunión de trabajo en el despacho de Qfincas" loading="lazy" width="960" height="640" />
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <h2>Nuestra atención</h2>
+      <div class="rejilla" style="margin-top:32px">
+        <div class="tarjeta"><h3>Control de gestiones</h3><p>Seguimiento permanente de las gestiones, avisos e incidencias que comunican los propietarios.</p></div>
+        <div class="tarjeta"><h3>Proveedores</h3><p>Control de suministros, mantenimientos y proveedores. Revisamos que la calidad sea la contratada y el precio, el de mercado.</p></div>
+        <div class="tarjeta"><h3>Reducimos tu cuota</h3><p>Negociamos con tus proveedores para conseguir descuentos garantizados.</p></div>
+        <div class="tarjeta"><h3>Empleados</h3><p>Supervisión del personal de la comunidad y corrección de conductas.</p></div>
+        <div class="tarjeta"><h3>Presupuesto</h3><p>Control del presupuesto comunitario, corrigiendo desviaciones a tiempo.</p></div>
+        <div class="tarjeta"><h3>Cobros y pagos</h3><p>Control exhaustivo de cobros, deudores, pagos y facturas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <h2>Cómo trabajamos</h2>
+      <div class="rejilla rejilla--3" style="margin-top:32px">
+        <div>
+          <h3>Claridad</h3>
+          <ul class="lista-check">
+            <li>Gestión económica con la cuenta de tu comunidad, controlada por el presidente</li>
+            <li>Informe económico semanal al presidente</li>
+            <li>Informe trimestral y resumen anual a cada propietario</li>
+            <li>Cuentas claras y equilibradas</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Comunicación</h3>
+          <ul class="lista-check">
+            <li>Canal de atención 24 horas</li>
+            <li>Atención personal de lunes a jueves de 9 a 18 y viernes de 9 a 15</li>
+            <li>Custodia de toda la documentación, a disposición de los propietarios</li>
+            <li>Estudio y mejora de los contratos de la comunidad</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Juntas</h3>
+          <ul class="lista-check">
+            <li>Convocatoria, asistencia y envío de actas a todos los propietarios</li>
+            <li>Preparación de la junta con el presidente</li>
+            <li>Asesoramiento jurídico en la toma de acuerdos</li>
+            <li>Actas con la transcripción literal de acuerdos y votaciones, y ejecución inmediata</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

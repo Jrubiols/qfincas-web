@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import Cta from '../components/Cta.astro';
+
+const preguntas = [
+  { p: '¿Quién decide el cambio de administrador?', r: 'La junta de propietarios. El nombramiento y el cese del administrador se acuerdan en junta, ordinaria o extraordinaria. Te ayudamos a preparar el punto del orden del día.' },
+  { p: '¿Hay que esperar a que termine el año?', r: 'No necesariamente. El cambio puede acordarse en cualquier junta. Revisamos contigo las condiciones del contrato con el administrador actual.' },
+  { p: '¿Qué pasa con la documentación de la comunidad?', r: 'El administrador saliente debe entregar libros de actas, contabilidad, contratos y demás documentos. Nos encargamos de pedirlos y de revisar que no falte nada.' },
+  { p: '¿Los vecinos tienen que hacer algo?', r: 'Nada. Les damos de alta en TuComunidad para que puedan consultar actas y cuentas y comunicar averías desde el primer día.' },
+];
+---
+<Base titulo="Cambiar de administrador de fincas" descripcion="Cómo cambiar de administrador de fincas en Madrid en 4 pasos. Qfincas se encarga del traspaso de documentación, cuentas y contratos.">
+  <CabeceraPagina
+    titulo="Cambiar de administrador de fincas"
+    lead="Si tu comunidad no está contenta con su administrador, cambiar es sencillo. Nosotros nos encargamos de todo el traspaso."
+    migas={[{ label: 'Cambiar de administrador' }]}
+  >
+    <div class="botones" style="margin-top:24px"><a class="btn btn--primario" href="/contacto/#presupuesto">Pedir presupuesto</a></div>
+  </CabeceraPagina>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <h2 class="centrado">El cambio en 4 pasos</h2>
+      <ol class="pasos" style="margin-top:40px">
+        <li><h3>Presupuesto</h3><p>Nos cuentas cómo es tu comunidad y te enviamos un presupuesto sin compromiso.</p></li>
+        <li><h3>Acuerdo en junta</h3><p>La junta de propietarios aprueba el cambio. Te ayudamos a preparar la convocatoria.</p></li>
+        <li><h3>Traspaso</h3><p>Pedimos al administrador anterior actas, cuentas y contratos, y gestionamos las firmas del banco con el presidente.</p></li>
+        <li><h3>Bienvenida</h3><p>Damos de alta a los vecinos en TuComunidad y hacemos la primera visita a la finca.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor prosa">
+      <h2>Preguntas frecuentes</h2>
+      <div class="preguntas">
+        {preguntas.map((x) => <details><summary>{x.p}</summary><p>{x.r}</p></details>)}
+      </div>
+    </div>
+  </section>
+
+  <Cta titulo="¿Lo llevamos a tu próxima junta?" texto="Te preparamos el presupuesto para que los vecinos puedan decidir." />
+</Base>

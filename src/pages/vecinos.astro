@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import { site } from '../data/site.js';
+
+const preguntas = [
+  { p: 'No pude ir a la junta. ¿Dónde veo el acta y el presupuesto aprobado?', r: 'Entra en TuComunidad y consulta el apartado de la junta de propietarios: allí están todas las actas y puedes descargar copias. El presupuesto detallado está en el apartado Presupuesto.' },
+  { p: 'Ha aparecido una gotera, no luce una bombilla o no funciona el telefonillo', r: 'Comunica la avería en TuComunidad y sigue su estado desde allí. Si es urgente, llámanos.' },
+  { p: 'Quiero que se trate un tema en la próxima junta', r: `Si es un asunto de interés general para la comunidad, escríbenos a ${site.email} y lo valoraremos con el presidente para incluirlo en el orden del día.` },
+  { p: 'He vendido o comprado un piso en la comunidad', r: 'Comunícanos el cambio de titularidad y el domicilio a efectos de notificaciones. Si vendes, podemos emitir el certificado de deudas con la comunidad que pide el notario.' },
+];
+---
+<Base titulo="Soy vecino" descripcion="Acceso a TuComunidad para vecinos de comunidades administradas por Qfincas: actas, presupuestos y aviso de averías.">
+  <CabeceraPagina
+    titulo="Soy vecino"
+    lead="Si tu comunidad está administrada por Qfincas, puedes hacerlo casi todo desde TuComunidad, a cualquier hora."
+    migas={[{ label: 'Soy vecino' }]}
+  >
+    <div class="botones" style="margin-top:24px">
+      <a class="btn btn--primario" href={site.tucomunidad} target="_blank" rel="noopener">Entrar en TuComunidad</a>
+      <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar al {site.telefono}</a>
+    </div>
+  </CabeceraPagina>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <h2>Qué puedes hacer en TuComunidad</h2>
+      <div class="rejilla" style="margin-top:32px">
+        <div class="tarjeta"><h3>Ver actas</h3><p>Todas las actas de las juntas, con copia descargable.</p></div>
+        <div class="tarjeta"><h3>Consultar cuentas</h3><p>El presupuesto aprobado y el estado económico de la comunidad.</p></div>
+        <div class="tarjeta"><h3>Comunicar averías</h3><p>Avisa de una incidencia y sigue su estado hasta que se resuelva.</p></div>
+      </div>
+      <p style="margin-top:24px;color:var(--texto-suave)">¿No tienes usuario o has olvidado la contraseña? Escríbenos a <a href={`mailto:${site.email}`}>{site.email}</a> y te ayudamos.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor prosa">
+      <h2>Preguntas frecuentes</h2>
+      <div class="preguntas">
+        {preguntas.map((x) => <details><summary>{x.p}</summary><p>{x.r}</p></details>)}
+      </div>
+    </div>
+  </section>
+</Base>

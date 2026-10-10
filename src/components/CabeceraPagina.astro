@@ -1,0 +1,14 @@
+---
+const { titulo, lead, migas = [] } = Astro.props;
+---
+<section class="cabecera-pagina">
+  <div class="contenedor">
+    <nav class="migas" aria-label="Estás en">
+      <a href="/">Inicio</a>
+      {migas.map((m) => <> · {m.href ? <a href={m.href}>{m.label}</a> : <span>{m.label}</span>}</>)}
+    </nav>
+    <h1>{titulo}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</section>

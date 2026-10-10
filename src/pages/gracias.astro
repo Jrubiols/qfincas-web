@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+---
+<Base titulo="Solicitud recibida">
+  <section class="seccion">
+    <div class="contenedor prosa centrado" style="margin:0 auto">
+      <h1>¡Gracias! Hemos recibido tu solicitud</h1>
+      <p class="lead">Te contactaremos lo antes posible con tu presupuesto. Si es urgente, llámanos al <a href={`tel:${site.telefonoLink}`}>{site.telefono}</a>.</p>
+      <p><a class="btn btn--primario" href="/">Volver al inicio</a></p>
+    </div>
+  </section>
+</Base>

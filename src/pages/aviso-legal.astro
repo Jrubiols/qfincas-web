@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import { site } from '../data/site.js';
+// PENDIENTE: completar los datos entre [corchetes] con Qfincas antes de publicar.
+---
+<Base titulo="Aviso legal">
+  <CabeceraPagina titulo="Aviso legal" migas={[{ label: 'Aviso legal' }]} />
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <h2>Titular de la web</h2>
+      <p>En cumplimiento de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico, se informa:</p>
+      <ul>
+        <li>Titular: [razón social]</li>
+        <li>NIF/CIF: [NIF]</li>
+        <li>Domicilio: {site.direccion}, {site.cp} {site.ciudad}</li>
+        <li>Teléfono: {site.telefono} · Email: {site.email}</li>
+        <li>Colegiación: abogado colegiado {site.colegiado}; administrador de fincas colegiado en el CAF Madrid nº [número]</li>
+      </ul>
+      <h2>Uso de la web</h2>
+      <p>El acceso a esta web es gratuito y atribuye la condición de usuario. El usuario se compromete a hacer un uso adecuado de los contenidos.</p>
+      <h2>Propiedad intelectual</h2>
+      <p>Los textos, imágenes, logotipos y diseño de esta web son propiedad del titular o se usan con autorización, y no pueden reproducirse sin permiso.</p>
+      <h2>Responsabilidad</h2>
+      <p>La información de esta web es orientativa y no sustituye al asesoramiento profesional sobre un caso concreto.</p>
+    </div>
+  </section>
+</Base>

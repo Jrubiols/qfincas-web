@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import Cta from '../../components/Cta.astro';
+import { servicios } from '../../data/servicios.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return servicios.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const otros = servicios.filter((x) => x.slug !== s.slug);
+---
+<Base titulo={`${s.titulo} en Madrid`} descripcion={s.resumen} imagen={s.imagen}>
+  <CabeceraPagina
+    titulo={s.titulo}
+    lead={s.intro}
+    migas={[{ label: 'Servicios', href: '/servicios/' }, { label: s.corto }]}
+  />
+
+  <section class="seccion">
+    <div class="contenedor contenido-lateral">
+      <div>
+        {s.destacado && <p class="destacado">{s.destacado}</p>}
+        <div class="rejilla rejilla--2">
+          {s.bloques.map((b) => (
+            <div class="bloque-servicio">
+              <h2 style="font-size:1.25rem">{b.titulo}</h2>
+              <ul class="lista-check">{b.items.map((i) => <li>{i}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </div>
+      <aside class="lateral">
+        <div class="formulario">
+          <h3>¿Te interesa este servicio?</h3>
+          <p style="color:var(--texto-suave)">Te preparamos un presupuesto sin compromiso.</p>
+          <div class="botones" style="flex-direction:column">
+            <a class="btn btn--primario" href="/contacto/#presupuesto">Pedir presupuesto</a>
+            <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar al {site.telefono}</a>
+          </div>
+        </div>
+        <div class="tarjeta" style="margin-top:24px">
+          <h3>Otros servicios</h3>
+          <ul style="list-style:none;padding:0;margin:0">
+            {otros.map((o) => <li style="margin-bottom:8px"><a href={`/servicios/${o.slug}/`}>{o.corto}</a></li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
