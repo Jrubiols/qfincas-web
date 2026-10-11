@@ -3,7 +3,8 @@ import '../styles/global.css';
 import { site, nav } from '../data/site.js';
 import { servicios } from '../data/servicios.js';
 
-const { titulo, descripcion = site.lema, imagen = '/img/madrid.jpg' } = Astro.props;
+// tema: clase en el body para las propuestas de diseño (/disenos/); noindex: nunca indexar esa página
+const { titulo, descripcion = site.lema, imagen = '/img/madrid.jpg', tema = '', noindex = false } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} | Qfincas` : `Qfincas | ${site.lema}`;
 const url = new URL(Astro.url.pathname, Astro.site);
 const ruta = Astro.url.pathname;
@@ -14,7 +15,7 @@ const grupos = ['Administración', 'Derecho'];
 // Netlify define URL con la dirección del despliegue. Mientras no sea qfincas.com
 // (p. ej. qfincas.netlify.app) se pide a Google que no indexe, para no duplicar la web actual.
 const urlDespliegue = process.env.URL || '';
-const noIndexar = urlDespliegue !== '' && !urlDespliegue.includes('qfincas.com');
+const noIndexar = noindex || (urlDespliegue !== '' && !urlDespliegue.includes('qfincas.com'));
 
 // Datos estructurados para que Google muestre dirección, teléfono y horario
 const jsonLd = {
@@ -59,7 +60,7 @@ const jsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <script is:inline>document.documentElement.classList.add('js');</script>
 </head>
-<body>
+<body class={tema || undefined}>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
 
   <header class="cabecera" id="cabecera">

@@ -1,0 +1,31 @@
+---
+// Página interna para comparar las propuestas de diseño. No se enlaza desde el menú ni se indexa.
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+const disenos = [
+  { href: '/', nombre: 'Actual', desc: 'Limpio y directo, con la foto de Madrid. Es la base sobre la que están hechas todas las páginas.' },
+  { href: '/disenos/editorial/', nombre: 'A · Editorial', desc: 'Tipografía con serifa, fondo crema y mucho aire. Transmite despacho de abogados de prestigio. Trata al cliente de usted.' },
+  { href: '/disenos/moderno/', nombre: 'B · Moderno', desc: 'Negro y rojo, bloques en rejilla y formulario en la portada. En la línea de las administradoras digitales.' },
+  { href: '/disenos/cercano/', nombre: 'C · Cercano', desc: 'Colores cálidos de la paleta de Qfincas, ilustración propia y un selector "¿Quién eres?" para presidentes, vecinos y propietarios.' },
+];
+---
+<Base titulo="Propuestas de diseño" noindex>
+  <CabeceraPagina
+    titulo="Propuestas de diseño"
+    lead="Cuatro estilos con el mismo contenido. Ábrelos en el móvil y en el ordenador y elige el que mejor represente a Qfincas; luego se aplica a toda la web."
+    migas={[{ label: 'Diseños' }]}
+  />
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="rejilla rejilla--2">
+        {disenos.map((d) => (
+          <a class="tarjeta tarjeta--enlace" href={d.href}>
+            <h2 style="font-size:1.5rem">{d.nombre}</h2>
+            <p>{d.desc}</p>
+            <span class="tarjeta__mas">Ver diseño →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

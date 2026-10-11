@@ -116,6 +116,16 @@ import { servicios } from '../data/servicios.js';
     // Solo se validan los campos del paso visible antes de avanzar
     const pasoValido = () => [...pasos[i].querySelectorAll('input, select, textarea')].every((c) => c.reportValidity());
 
+    // Rellena campos con lo que venga en la URL (p. ej. /contacto/?viviendas=24&motivo=...)
+    const params = new URLSearchParams(location.search);
+    for (const campo of ['viviendas', 'zona', 'motivo']) {
+      const v = params.get(campo);
+      const el = form.querySelector(`[name="${campo}"]`);
+      if (v && el) el.value = v;
+    }
+    const tipo = params.get('tipo');
+    if (tipo) form.querySelectorAll('[name="tipo"]').forEach((r) => { r.checked = r.value === tipo; });
+
     siguiente.addEventListener('click', () => { if (pasoValido()) mostrar(i + 1); });
     atras.addEventListener('click', () => mostrar(i - 1));
     mostrar(0);
