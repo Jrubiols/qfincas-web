@@ -1,5 +1,15 @@
 ---
 const { titulo, lead, migas = [] } = Astro.props;
+
+// Migas de pan para Google (BreadcrumbList). La última miga es la página actual.
+const base = Astro.site;
+const items = [{ label: 'Inicio', href: '/' }, ...migas].map((m, i, todas) => ({
+  '@type': 'ListItem',
+  position: i + 1,
+  name: m.label,
+  item: new URL(m.href ?? (i === todas.length - 1 ? Astro.url.pathname : '/'), base).href,
+}));
+const migasLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items };
 ---
 <section class="cabecera-pagina">
   <div class="contenedor">
@@ -11,4 +21,5 @@ const { titulo, lead, migas = [] } = Astro.props;
     {lead && <p class="lead">{lead}</p>}
     <slot />
   </div>
+  {migas.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(migasLd)} />}
 </section>

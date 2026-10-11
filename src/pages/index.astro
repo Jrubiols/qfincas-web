@@ -21,7 +21,7 @@ const faqLd = {
 ---
 <Base descripcion="Administración de fincas en Madrid con abogados expertos en propiedad horizontal. Cuentas claras, informe semanal al presidente y reclamación de impagos sin coste. Pide presupuesto.">
   <section class="hero">
-    <img class="hero__fondo" src="/img/madrid.jpg" alt="" fetchpriority="high" width="1920" height="1050" />
+    <img class="hero__fondo" src="/img/madrid.webp" srcset="/img/madrid-800.webp 800w, /img/madrid.webp 1600w" sizes="100vw" alt="" fetchpriority="high" width="1600" height="875" />
     <div class="contenedor">
       <span class="antetitulo" style="color:#ff8a8f">Administración de fincas · Madrid</span>
       <h1>Tu administrador de fincas, con abogados incluidos</h1>
@@ -57,7 +57,7 @@ const faqLd = {
       <div class="rejilla" style="margin-top:40px">
         {servicios.map((s) => (
           <a class="tarjeta tarjeta--enlace" href={`/servicios/${s.slug}/`}>
-            <img class="tarjeta__img" src={s.imagen} alt="" loading="lazy" width="860" height="484" />
+            <img class="tarjeta__img" src={s.imagen} srcset={`${s.imagen.replace('.webp', '-480.webp')} 480w, ${s.imagen} 779w`} sizes="(max-width: 560px) 92vw, (max-width: 1240px) 45vw, 270px" alt="" loading="lazy" width="779" height="465" />
             <span class="etiqueta">{s.grupo}</span>
             <h3>{s.titulo}</h3>
             <p>{s.resumen}</p>
@@ -125,7 +125,7 @@ const faqLd = {
 
   <section class="seccion">
     <div class="contenedor dos-col">
-      <img src="/img/acuerdo.jpg" alt="Firma de un acuerdo en el despacho" loading="lazy" width="960" height="640" />
+      <img src="/img/acuerdo.webp" srcset="/img/acuerdo-480.webp 480w, /img/acuerdo.webp 1100w" sizes="(max-width: 960px) 92vw, 560px" alt="Firma de un acuerdo en el despacho" loading="lazy" width="1100" height="602" />
       <div>
         <span class="antetitulo">¿No estás contento con tu administrador?</span>
         <h2>Cambiar de administrador es más fácil de lo que crees</h2>
@@ -152,14 +152,14 @@ const faqLd = {
         </div>
         <div class="tarjeta">
           <h3>Docencia</h3>
-          <p>Director y profesora del curso de especialización en administración de fincas de Economist & Jurist, y del Máster Inmobiliario de ISDE.</p>
+          <p>Alberto Cano dirige el Máster Inmobiliario de ISDE desde 2012 y, junto a María Galán, imparte el curso de especialización en administración de fincas de Economist & Jurist.</p>
         </div>
         <div class="tarjeta">
           <h3>En los medios</h3>
           <p>Artículos en la revista Inmueble y aparición en RTVE explicando el dividendo digital a las comunidades.</p>
         </div>
       </div>
-      <p style="margin-top:24px"><a href="/certificaciones/">Ver certificaciones →</a></p>
+      <p style="margin-top:24px"><a href="/nosotros/certificaciones/">Ver certificaciones →</a></p>
     </div>
   </section>
 

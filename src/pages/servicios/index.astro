@@ -18,7 +18,7 @@ const grupos = ['Administración', 'Derecho'];
         <div class="rejilla" style="margin-top:24px">
           {servicios.filter((s) => s.grupo === g).map((s) => (
             <a class="tarjeta tarjeta--enlace" href={`/servicios/${s.slug}/`}>
-              <img class="tarjeta__img" src={s.imagen} alt="" loading="lazy" width="860" height="484" />
+              <img class="tarjeta__img" src={s.imagen} srcset={`${s.imagen.replace('.webp', '-480.webp')} 480w, ${s.imagen} 779w`} sizes="(max-width: 560px) 92vw, (max-width: 1240px) 45vw, 270px" alt="" loading="lazy" width="779" height="465" />
               <h3>{s.titulo}</h3>
               <p>{s.resumen}</p>
               <span class="tarjeta__mas">Ver servicio →</span>

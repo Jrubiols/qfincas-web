@@ -7,7 +7,7 @@ export const servicios = [
     titulo: 'Administración de fincas y gestión de patrimonios',
     corto: 'Administración de fincas',
     resumen: 'Gestión económica, juntas, reparaciones y cumplimiento legal de tu comunidad, con informes claros para el presidente y cada propietario.',
-    imagen: '/img/s-fincas.jpg',
+    imagen: '/img/s-fincas.webp',
     intro: 'Nos ocupamos del día a día de tu comunidad para que los vecinos no tengan que preocuparse de nada: cuentas, juntas, proveedores, averías y obligaciones legales.',
     bloques: [
       {
@@ -70,7 +70,7 @@ export const servicios = [
     titulo: 'Administración y gestión de alquileres',
     corto: 'Gestión de alquileres',
     resumen: 'Desde la búsqueda del inquilino hasta el cobro de la renta y el mantenimiento de la vivienda.',
-    imagen: '/img/s-alquileres.jpg',
+    imagen: '/img/s-alquileres.webp',
     intro: 'Para propietarios particulares, inversores y empresas inmobiliarias: gestionamos tus arrendamientos para mejorar la rentabilidad y conservar el valor de tus inmuebles.',
     bloques: [
       {
@@ -109,7 +109,7 @@ export const servicios = [
     titulo: 'Secretaría',
     corto: 'Secretaría',
     resumen: 'Actas, convocatorias, certificados de deuda y custodia de toda la documentación de la comunidad.',
-    imagen: '/img/s-secretaria.jpg',
+    imagen: '/img/s-secretaria.webp',
     intro: 'Asumimos las funciones de secretario que marca la Ley de Propiedad Horizontal, con todos los documentos al día y a disposición de los propietarios.',
     bloques: [
       {
@@ -147,7 +147,7 @@ export const servicios = [
     titulo: 'Asesoría jurídica',
     corto: 'Asesoría jurídica',
     resumen: 'Abogados colegiados para juicios, contratos, morosidad, temas laborales y protección de datos.',
-    imagen: '/img/s-juridica.jpg',
+    imagen: '/img/s-juridica.webp',
     intro: 'Somos abogados colegiados. Te asesoramos y defendemos en todo lo que afecta a tu comunidad, tu vivienda o tu empresa.',
     bloques: [
       {
@@ -199,7 +199,7 @@ export const servicios = [
     titulo: 'Consultoría jurídica',
     corto: 'Consultoría jurídica',
     resumen: 'Analizamos tu caso, proponemos soluciones y te acompañamos hasta aplicarlas.',
-    imagen: '/img/s-consultoria.jpg',
+    imagen: '/img/s-consultoria.webp',
     intro: 'Un método de trabajo en cuatro fases para resolver problemas complejos de tu comunidad o tu empresa.',
     bloques: [
       {
@@ -226,7 +226,7 @@ export const servicios = [
     titulo: 'Valoración inmobiliaria',
     corto: 'Valoración inmobiliaria',
     resumen: 'Valoramos y vendemos tu inmueble sin exclusiva, con honorarios del 2 % al 2,5 %.',
-    imagen: '/img/s-valoracion.jpg',
+    imagen: '/img/s-valoracion.webp',
     intro: 'Te acompañamos desde la valoración hasta la firma de la venta, sin exclusiva: puedes poner tu propio cartel o trabajar con otras agencias.',
     destacado: 'Honorarios del 2 % al 2,5 % sobre el precio final de venta. Sin exclusiva.',
     bloques: [
@@ -248,7 +248,7 @@ export const servicios = [
     titulo: 'Asesoría arquitectónica e industrial',
     corto: 'Asesoría técnica',
     resumen: 'Arquitectos e ingenieros para obras, ITE, accesibilidad, instalaciones y ayudas públicas.',
-    imagen: '/img/s-arquitectura.jpg',
+    imagen: '/img/s-arquitectura.webp',
     intro: 'Nuestro equipo técnico de arquitectos e ingenieros resuelve tus dudas antes de contratar una obra o adaptar una instalación.',
     bloques: [
       {

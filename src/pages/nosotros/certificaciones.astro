@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import Cta from '../../components/Cta.astro';
+import { site } from '../../data/site.js';
+
+// Los PDF de la web antigua no se publican: incluyen DNI y otros datos personales.
+// Si Qfincas quiere enlazarlos, que facilite versiones sin esos datos.
+const acreditaciones = [
+  { t: 'Abogado colegiado desde 1996', d: `Ilustre Colegio de Abogados de Madrid (ICAM), ${site.colegiado}. Diploma por 25 años de colegiación.`, logo: '/img/blog/logo-icam.png' },
+  { t: '25 años de ejercicio como administrador de fincas', d: 'Mención honorífica del Colegio Profesional de Administradores de Fincas de Madrid (CAFMadrid, 2020).', logo: '/img/blog/logo-cafm.png' },
+  { t: 'Director del Máster Inmobiliario de ISDE', d: 'Desde abril de 2012, en el Instituto Superior de Derecho y Economía, centro adscrito a la Universidad Complutense de Madrid.' },
+  { t: 'Formación de administradores en Economist & Jurist', d: 'Director y profesora del curso de especialización en administración de fincas y real estate management (2019).', logo: '/img/blog/logo-economist.png' },
+];
+const otros = [
+  'Certificado de no apertura de expediente disciplinario del Colegio de Administradores de Fincas de Madrid (2020)',
+  'Ponente en las Jornadas Prácticas UCP de Alcorcón, Alcobendas y Villalba (2016)',
+];
+const articulos = [
+  { t: 'Limitación de uso y destino de viviendas y locales en edificios', href: '/blog/limitacion-de-uso-y-destino-de-viviendas-y-locales-en-edificios/' },
+  { t: 'La impugnación de acuerdos de la comunidad de propietarios: cómo y por qué se puede impugnar un acuerdo' },
+  { t: 'Responsabilidad de la comunidad de propietarios cuando un vecino niega el acceso a su vivienda' },
+  { t: 'Nuevos sistemas para obtener ingresos en las comunidades de propietarios' },
+];
+---
+<Base titulo="Certificaciones" descripcion="Acreditaciones de Qfincas: abogado colegiado en el ICAM desde 1996, 25 años como administrador de fincas colegiado, dirección del Máster Inmobiliario de ISDE y docencia en Economist & Jurist.">
+  <CabeceraPagina
+    titulo="Certificaciones"
+    lead="Nuestra experiencia está avalada por los colegios profesionales y por las instituciones donde enseñamos."
+    migas={[{ label: 'Nosotros', href: '/nosotros/' }, { label: 'Certificaciones' }]}
+  />
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="rejilla rejilla--2">
+        {acreditaciones.map((x) => (
+          <div class="tarjeta">
+            {x.logo && <img src={x.logo} alt="" loading="lazy" style="height:44px;width:auto;margin-bottom:16px" />}
+            <h2 style="font-size:1.25rem">{x.t}</h2>
+            <p>{x.d}</p>
+          </div>
+        ))}
+      </div>
+      <p style="margin-top:24px;color:var(--texto-suave)">Si necesitas una copia de cualquier certificado, pídenosla en <a href={`mailto:${site.email}?subject=Certificados`}>{site.email}</a>.</p>
+      <div class="rejilla rejilla--2" style="margin-top:56px">
+        <div>
+          <h2 style="font-size:1.4rem">Otras acreditaciones</h2>
+          <ul class="lista-check">{otros.map((o) => <li>{o}</li>)}</ul>
+        </div>
+        <div>
+          <h2 style="font-size:1.4rem">Artículos publicados</h2>
+          <ul class="lista-check">{articulos.map((o) => <li>{o.href ? <a href={o.href}>{o.t}</a> : o.t}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

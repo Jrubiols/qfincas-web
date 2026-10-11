@@ -26,7 +26,7 @@ export const nav = [
     href: '/nosotros/',
     children: [
       { label: 'Quiénes somos', href: '/nosotros/' },
-      { label: 'Certificaciones', href: '/certificaciones/' },
+      { label: 'Certificaciones', href: '/nosotros/certificaciones/' },
       { label: 'Trabaja con nosotros', href: '/nosotros/trabaja/' },
     ],
   },

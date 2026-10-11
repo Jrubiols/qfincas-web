@@ -1,0 +1,30 @@
+# Redirecciones desde las URLs de la web antigua (WordPress) a las nuevas.
+# Así no se pierden visitas ni posiciones en Google al cambiar el dominio.
+
+# Antiguas noticias (estaban en la raíz) -> /blog/
+/entrega-diploma-25-anos-colegiacion/  /blog/entrega-diploma-25-anos-colegiacion/  301
+/carta-presidencia-cafmadrid-por-25-anos-profesion/  /blog/carta-presidencia-cafmadrid-por-25-anos-profesion/  301
+/alberto-cano-alsua-y-maria-galan-participan-como-director-y-profesora-en-el-area-academica-executive-del-economist-jurist-school-s-l/  /blog/alberto-cano-alsua-y-maria-galan-participan-como-director-y-profesora-en-el-area-academica-executive-del-economist-jurist-school-s-l/  301
+/dividendo-digital-aparicion-en-rtve-de-alberto-cano/  /blog/dividendo-digital-aparicion-en-rtve-de-alberto-cano/  301
+/limitacion-de-uso-y-destino-de-viviendas-y-locales-en-edificios/  /blog/limitacion-de-uso-y-destino-de-viviendas-y-locales-en-edificios/  301
+
+# Antiguas preguntas de vecinos -> área de vecinos
+/no-pude-asistir-a-la-junta-y-no-conozco-cual-es-el-presupuesto-aprobado-para-este-ano/  /vecinos/  301
+/me-gustaria-que-se-hablara-de-un-tema-en-particular-en-la-proxima-reunion-de-vecinos/  /vecinos/  301
+/la-bombilla-del-pasillo-no-luce-ha-aparecido-una-gotera-en-el-garaje-se-ha-roto-una-baldosa-los-telefonillos-no-se-escuchan-bien/  /vecinos/  301
+
+# Otras páginas de WordPress
+/certificaciones/  /nosotros/certificaciones/  301
+/mapa-web/  /  301
+/category/*  /blog/  301
+/feed/  /blog/  301
+/comments/feed/  /blog/  301
+/politica-de-privacidad/  /privacidad/  301
+/politica-de-cookies/  /cookies/  301
+
+# Archivos antiguos
+/wp-content/uploads/2022/02/Articulo-Alberto-Cano.pdf  /docs/articulo-limitacion-uso-viviendas-locales.pdf  301
+/wp-content/uploads/2023/03/*  /nosotros/certificaciones/  301
+/wp-content/*  /  301
+/wp-admin/*  /  301
+/wp-login.php  /  301

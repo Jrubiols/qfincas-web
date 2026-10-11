@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import Cta from '../../components/Cta.astro';
+import { entradas } from '../../data/blog.js';
+
+export function getStaticPaths() {
+  return entradas.map((e) => ({ params: { slug: e.slug }, props: { e } }));
+}
+const { e } = Astro.props;
+const otras = entradas.filter((x) => x.slug !== e.slug).slice(0, 3);
+---
+<Base titulo={e.titulo} descripcion={e.resumen} imagen={e.imagen}>
+  <CabeceraPagina titulo={e.titulo} lead={e.resumen} migas={[{ label: 'Blog', href: '/blog/' }, { label: e.tipo }]}>
+    <p class="etiqueta" style="margin-top:12px">{e.tipo}{e.fecha && ` · ${e.fecha}`}</p>
+  </CabeceraPagina>
+  <section class="seccion">
+    <article class="contenedor prosa" set:html={e.cuerpo} />
+  </section>
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <h2 style="font-size:1.4rem">Más del blog</h2>
+      <div class="rejilla" style="margin-top:24px">
+        {otras.map((x) => (
+          <a class="tarjeta tarjeta--enlace" href={`/blog/${x.slug}/`}>
+            <span class="etiqueta">{x.tipo}</span>
+            <h3>{x.titulo}</h3>
+            <span class="tarjeta__mas">Leer →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

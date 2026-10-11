@@ -3,8 +3,8 @@ import '../styles/global.css';
 import { site, nav } from '../data/site.js';
 import { servicios } from '../data/servicios.js';
 
-// tema: clase en el body para las propuestas de diseño (/disenos/); noindex: nunca indexar esa página
-const { titulo, descripcion = site.lema, imagen = '/img/madrid.jpg', tema = '', noindex = false } = Astro.props;
+// noindex: pedir a Google que no indexe esa página
+const { titulo, descripcion = site.lema, imagen = '/img/madrid.jpg', noindex = false } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} | Qfincas` : `Qfincas | ${site.lema}`;
 const url = new URL(Astro.url.pathname, Astro.site);
 const ruta = Astro.url.pathname;
@@ -60,7 +60,7 @@ const jsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <script is:inline>document.documentElement.classList.add('js');</script>
 </head>
-<body class={tema || undefined}>
+<body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
 
   <header class="cabecera" id="cabecera">
@@ -134,7 +134,7 @@ const jsonLd = {
           <h3>Qfincas</h3>
           <ul>
             <li><a href="/nosotros/">Quiénes somos</a></li>
-            <li><a href="/certificaciones/">Certificaciones</a></li>
+            <li><a href="/nosotros/certificaciones/">Certificaciones</a></li>
             <li><a href="/tarifas/">Tarifas</a></li>
             <li><a href="/cambiar-de-administrador/">Cambiar de administrador</a></li>
             <li><a href="/vecinos/">Soy vecino</a></li>
