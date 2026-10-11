@@ -3,6 +3,7 @@
 export const servicios = [
   {
     slug: 'administracion-de-fincas',
+    guia: { titulo: 'Derramas en la comunidad: quién paga y cuándo son obligatorias', href: '/blog/derramas-en-la-comunidad-de-propietarios/' },
     grupo: 'Administración',
     titulo: 'Administración de fincas y gestión de patrimonios',
     corto: 'Administración de fincas',
@@ -105,6 +106,7 @@ export const servicios = [
   },
   {
     slug: 'secretaria',
+    guia: { titulo: 'La junta de propietarios: convocatoria, votos, actas e impugnación', href: '/blog/junta-de-propietarios-guia-practica/' },
     grupo: 'Administración',
     titulo: 'Secretaría',
     corto: 'Secretaría',
@@ -143,6 +145,7 @@ export const servicios = [
   },
   {
     slug: 'asesoria-juridica',
+    guia: { titulo: 'Qué hacer con un vecino moroso en la comunidad', href: '/blog/que-hacer-con-un-vecino-moroso/' },
     grupo: 'Derecho',
     titulo: 'Asesoría jurídica',
     corto: 'Asesoría jurídica',

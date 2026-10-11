@@ -8,14 +8,20 @@ export function getStaticPaths() {
   return entradas.map((e) => ({ params: { slug: e.slug }, props: { e } }));
 }
 const { e } = Astro.props;
+const borrador = e.revisado === false;
 const otras = entradas.filter((x) => x.slug !== e.slug).slice(0, 3);
 ---
-<Base titulo={e.titulo} descripcion={e.resumen} imagen={e.imagen}>
+<Base titulo={e.titulo} descripcion={e.resumen} imagen={e.imagen} noindex={borrador}>
   <CabeceraPagina titulo={e.titulo} lead={e.resumen} migas={[{ label: 'Blog', href: '/blog/' }, { label: e.tipo }]}>
     <p class="etiqueta" style="margin-top:12px">{e.tipo}{e.fecha && ` · ${e.fecha}`}</p>
   </CabeceraPagina>
   <section class="seccion">
-    <article class="contenedor prosa" set:html={e.cuerpo} />
+    <div class="contenedor prosa">
+      {borrador && (
+        <p class="destacado">Borrador pendiente de revisión por el despacho. No se mostrará en Google hasta que esté revisado.</p>
+      )}
+      <article set:html={e.cuerpo} />
+    </div>
   </section>
   <section class="seccion seccion--crema">
     <div class="contenedor">
@@ -33,3 +39,18 @@ const otras = entradas.filter((x) => x.slug !== e.slug).slice(0, 3);
   </section>
   <Cta />
 </Base>
+
+<script>
+  // Botones "Copiar modelo": copian el texto del bloque cuyo id indica data-copiar
+  document.querySelectorAll('[data-copiar]').forEach((boton) => {
+    boton.addEventListener('click', async () => {
+      const texto = document.getElementById(boton.dataset.copiar)?.innerText ?? '';
+      try {
+        await navigator.clipboard.writeText(texto);
+        boton.textContent = 'Copiado ✓';
+      } catch {
+        boton.textContent = 'Selecciona el texto y cópialo';
+      }
+    });
+  });
+</script>

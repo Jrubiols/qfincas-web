@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import PresupuestoForm from '../components/PresupuestoForm.astro';
 import { servicios } from '../data/servicios.js';
 import { site } from '../data/site.js';
+import { entradas } from '../data/blog.js';
+const guias = entradas.filter((e) => e.tipo === 'Guía');
 
 // PENDIENTE: si Qfincas publica un precio orientativo o confirma "sin permanencia", añadirlo aquí.
 const preguntas = [
@@ -164,6 +166,22 @@ const faqLd = {
   </section>
 
   <section class="seccion">
+    <div class="contenedor">
+      <span class="antetitulo">Guías gratuitas</span>
+      <h2>Lo que todo presidente debería saber</h2>
+      <div class="rejilla" style="margin-top:32px">
+        {guias.map((g) => (
+          <a class="tarjeta tarjeta--enlace" href={`/blog/${g.slug}/`}>
+            <h3>{g.titulo}</h3>
+            <p>{g.resumen}</p>
+            <span class="tarjeta__mas">Leer la guía →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
     <div class="contenedor prosa" style="margin:0 auto">
       <h2>Preguntas frecuentes</h2>
       <div class="preguntas">

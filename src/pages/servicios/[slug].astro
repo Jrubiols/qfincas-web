@@ -40,6 +40,13 @@ const otros = servicios.filter((x) => x.slug !== s.slug);
             <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar al {site.telefono}</a>
           </div>
         </div>
+        {s.guia && (
+          <a class="tarjeta tarjeta--enlace" href={s.guia.href} style="margin-top:24px">
+            <span class="etiqueta">Guía</span>
+            <h3 style="font-size:1.05rem">{s.guia.titulo}</h3>
+            <span class="tarjeta__mas">Leer →</span>
+          </a>
+        )}
         <div class="tarjeta" style="margin-top:24px">
           <h3>Otros servicios</h3>
           <ul style="list-style:none;padding:0;margin:0">
