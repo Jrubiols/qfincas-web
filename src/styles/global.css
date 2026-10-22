@@ -158,8 +158,23 @@ p { margin: 0 0 1em; }
 .plan__precio { font-size: 1.05rem; color: var(--texto-suave); margin-bottom: 20px; }
 .plan__precio strong { font-size: 1.6rem; color: var(--negro); }
 .plan .lista-check { margin-bottom: 28px; flex: 1; }
-.plan li.no { color: #756c6d; }
-.plan li.no::before { background: #f1eeec url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 8h6' stroke='%23a39b9c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+.plan__previo { font-weight: 700; color: var(--negro); margin-bottom: 12px; }
+
+/* Tabla comparativa de tarifas */
+.tabla-tarifas { margin-top: 32px; background: #fff; border: 1px solid var(--borde); border-radius: var(--radio); overflow: hidden; }
+.tabla-tarifas table { width: 100%; border-collapse: collapse; }
+.tabla-tarifas th, .tabla-tarifas td { padding: 12px 16px; border-bottom: 1px solid var(--borde); text-align: center; vertical-align: middle; }
+.tabla-tarifas tbody:last-child tr:last-child > * { border-bottom: 0; }
+.tabla-tarifas thead th { width: 120px; font-size: 1.05rem; color: var(--negro); }
+.tabla-tarifas thead th:first-child { width: auto; }
+.tabla-tarifas th[scope="row"] { text-align: left; font-weight: 400; }
+.tabla-tarifas tr.grupo th { text-align: left; background: var(--crema); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-suave); padding-top: 10px; padding-bottom: 10px; }
+.tabla-tarifas .destacada { background: #fff8f7; }
+.tabla-tarifas thead .destacada { color: var(--rojo); }
+.tabla-tarifas .si, .tabla-tarifas .no { display: inline-block; width: 20px; height: 20px; border-radius: 50%; vertical-align: middle; }
+.tabla-tarifas .si { background: var(--rojo-suave) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23d71920' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat; }
+.tabla-tarifas .no { background: #f1eeec url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5 8h6' stroke='%23a39b9c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/20px no-repeat; }
+.tabla-tarifas .nota { display: block; font-size: .8rem; line-height: 1.3; color: var(--texto-suave); }
 
 /* Formularios */
 .formulario { background: #fff; border-radius: var(--radio); padding: 32px; box-shadow: var(--sombra); border: 1px solid var(--borde); }
@@ -178,6 +193,8 @@ p { margin: 0 0 1em; }
 .legal-check { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; color: var(--texto-suave); }
 .legal-check input { margin-top: 4px; accent-color: var(--rojo); }
 .oculto { display: none; }
+/* Invisible en pantalla pero lo leen los lectores de pantalla */
+.solo-lector { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .pasos-form { display: flex; gap: 8px; margin-bottom: 24px; }
 .pasos-form span { flex: 1; height: 4px; border-radius: 4px; background: var(--borde); }
 .pasos-form span.activo { background: var(--rojo); }
@@ -247,6 +264,11 @@ p { margin: 0 0 1em; }
   .cta { padding: 32px 24px; }
   .formulario { padding: 24px 20px; }
   .rejilla { grid-template-columns: 1fr; }
+  .tabla-tarifas th, .tabla-tarifas td { padding: 10px 2px; }
+  .tabla-tarifas th[scope="row"], .tabla-tarifas tr.grupo th { padding-left: 12px; padding-right: 8px; font-size: .9rem; }
+  .tabla-tarifas tr.grupo th { font-size: .72rem; }
+  .tabla-tarifas thead th { width: 54px; font-size: .78rem; }
+  .tabla-tarifas .nota { font-size: .7rem; }
 }
 
 /* Artículos del blog */

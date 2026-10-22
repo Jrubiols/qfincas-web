@@ -28,11 +28,13 @@ npm run build      # genera la web en dist/
 Busca `PENDIENTE` en el código:
 
 - Móvil de WhatsApp y código postal (`site.js`)
-- Qué incluye cada tarifa y si se publican precios (`tarifas.astro`)
+- Precio de cada tarifa, y si Premium incluye juntas extraordinarias y subvenciones (`tarifas.astro`)
 - Razón social, NIF y nº de colegiado del CAF para el aviso legal y la privacidad
 - Texto completo y fecha de las noticias del blog
 - Fotos reales del equipo
 
 ## Publicación
 
-Pensada para Netlify (`netlify.toml`). El formulario de presupuesto usa Netlify Forms: en el panel de Netlify hay que activar el aviso por email a secretaria@qfincas.com. Antes de apuntar el dominio qfincas.com a Netlify, comprobar que no se tocan los registros MX del correo.
+Pensada para Netlify (`netlify.toml`). El formulario de presupuesto usa Netlify Forms.
+
+Para pasar el dominio qfincas.com a esta web, seguir [PUBLICAR.md](PUBLICAR.md). Explica qué registros DNS se cambian, cuáles no se tocan para no romper el correo y cómo volver atrás. `npm run comprobar` revisa que todas las URLs de la web antigua sigan funcionando.

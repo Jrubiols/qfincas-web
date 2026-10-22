@@ -48,6 +48,15 @@ import { servicios } from '../data/servicios.js';
   <div class="paso-form" data-paso="2">
     <h2>¿Qué servicios te interesan?</h2>
     <div class="campo">
+      <label for="tarifa">Tarifa</label>
+      <select id="tarifa" name="tarifa">
+        <option value="Aún no lo sé">Aún no lo sé</option>
+        <option value="Base">Base</option>
+        <option value="Media">Media</option>
+        <option value="Premium">Premium</option>
+      </select>
+    </div>
+    <div class="campo">
       <fieldset>
         <legend class="oculto">Servicios</legend>
         <div class="opciones">
@@ -116,12 +125,13 @@ import { servicios } from '../data/servicios.js';
     // Solo se validan los campos del paso visible antes de avanzar
     const pasoValido = () => [...pasos[i].querySelectorAll('input, select, textarea')].every((c) => c.reportValidity());
 
-    // Rellena campos con lo que venga en la URL (p. ej. /contacto/?viviendas=24&motivo=...)
+    // Rellena campos con lo que venga en la URL (p. ej. /contacto/?viviendas=24&tarifa=Media)
     const params = new URLSearchParams(location.search);
-    for (const campo of ['viviendas', 'zona', 'motivo']) {
+    for (const campo of ['viviendas', 'zona', 'motivo', 'tarifa']) {
       const v = params.get(campo);
       const el = form.querySelector(`[name="${campo}"]`);
-      if (v && el) el.value = v;
+      // En los desplegables solo se acepta un valor que exista en la lista
+      if (v && el && (el.tagName !== 'SELECT' || [...el.options].some((o) => o.value === v))) el.value = v;
     }
     const tipo = params.get('tipo');
     if (tipo) form.querySelectorAll('[name="tipo"]').forEach((r) => { r.checked = r.value === tipo; });

@@ -2,35 +2,147 @@
 import Base from '../layouts/Base.astro';
 import CabeceraPagina from '../components/CabeceraPagina.astro';
 import Cta from '../components/Cta.astro';
+import { site } from '../data/site.js';
 
-// PENDIENTE DE CONFIRMAR CON QFINCAS: qué incluye cada nivel y si se publica un precio "desde".
-// El reparto de abajo es una propuesta basada en los 6 bloques de la web actual.
-// Para poner precio, rellenar `precio` (ej. 'Desde 25 €/vivienda al mes').
-const bloques = [
-  'Contabilidad y pagos',
-  'Secretaría y administración',
-  'Recuperación de impagos sin coste',
-  'Asesoría jurídica y fiscal',
-  'Descuentos con proveedores',
-  'Gestión integral del edificio',
-  'Defensa judicial gratuita',
-];
+// Niveles y contenido tomados de la oferta oficial de Qfincas (anexo de servicios): Base, Media y Premium.
+// Así lo que ve el presidente en la web coincide con lo que recibe después en la oferta.
+// PENDIENTE DE CONFIRMAR CON QFINCAS:
+//  - Precio "desde" de cada tarifa: rellenar `precio` (ej. 'Desde 60 € al mes').
+//  - Juntas extraordinarias y subvenciones: el anexo las incluye en Premium, pero el contrato las factura aparte.
+//    Aquí se muestran como en el anexo hasta que Qfincas decida.
+//  - La lista "Lo que se factura aparte" sale de la cláusula 9 del contrato.
 const planes = [
-  { nombre: 'Esencial', para: 'Comunidades pequeñas que quieren las cuentas y las juntas al día.', incluye: 3, precio: null },
-  { nombre: 'Completa', para: 'La opción de la mayoría de comunidades.', incluye: 5, precio: null, destacado: true },
-  { nombre: 'Premier', para: 'Para quien quiere olvidarse de todo, también de los juicios.', incluye: 7, precio: null },
+  {
+    nombre: 'Base',
+    para: 'Para comunidades pequeñas o presidentes que prefieren hacer ellos las gestiones y quieren las cuentas y los cobros bajo control.',
+    precio: null,
+    puntos: [
+      'Recibos y cobro de cuotas y derramas',
+      'Pago y control de proveedores',
+      'Informe anual de gastos, balance y presupuesto',
+      'Reclamación extrajudicial de impagos sin coste',
+      'Nuestra red de reparadores de confianza',
+    ],
+  },
+  {
+    nombre: 'Media',
+    para: 'Todo lo que exige la Ley de Propiedad Horizontal y lo que añadimos por experiencia. La que eligen la mayoría de comunidades.',
+    precio: null,
+    destacado: true,
+    previo: 'Todo lo de Base, y además:',
+    puntos: [
+      'Convocatoria, asistencia a la junta y actas',
+      'Contabilidad por partida doble con informes periódicos',
+      'Averías, siniestros y seguros',
+      'Control de obras y presupuestos comparables',
+      'Nóminas de empleados e impuestos de la comunidad',
+      'Juicio a morosos sin coste de abogados',
+    ],
+  },
+  {
+    nombre: 'Premium',
+    para: 'Para quien quiere olvidarse de todo: obras, subvenciones, asuntos legales y juntas extraordinarias.',
+    precio: null,
+    previo: 'Todo lo de Media, y además:',
+    puntos: [
+      'Juntas extraordinarias incluidas',
+      'Móvil de contacto 24 horas',
+      'Extracto contable mensual a cada propietario',
+      'Asesoramiento jurídico y fiscal integral',
+      'Plan de mantenimiento y consultas a arquitectos',
+      'Tramitación de subvenciones y financiación',
+    ],
+  },
 ];
 
-const detalle = [
-  { t: 'Contabilidad y pagos', d: 'Recaudación de cuotas ordinarias y derramas, pago a proveedores e informe anual de gastos.' },
-  { t: 'Secretaría y administración', d: 'Gestión del edificio, custodia de actas, contratos y documentos, visitas periódicas, convocatorias, asistencia a juntas y redacción de actas.' },
-  { t: 'Recuperación de impagos', d: 'Reclamación extrajudicial sin coste para la comunidad, con un alto índice de recobro. Preparación del proceso judicial si hace falta.' },
-  { t: 'Asesoría jurídica y fiscal', d: 'Te informamos de cómo gestionar la propiedad horizontal conforme a la ley vigente.' },
-  { t: 'Descuentos', d: 'Descuentos y promociones que conseguimos de las empresas de mantenimiento y conservación.' },
-  { t: 'Gestión integral del edificio', d: 'Plan de mantenimiento, búsqueda de financiación para obras, solicitud de ayudas y subvenciones, y consultas gratuitas a nuestros arquitectos e ingenieros.' },
+// Desde qué tarifa se incluye cada servicio: 0 = Base, 1 = Media, 2 = Premium.
+// `nota` sustituye al guion en las tarifas que no lo incluyen.
+const tabla = [
+  {
+    grupo: 'Cuentas y cobros',
+    filas: [
+      { t: 'Recibos y cobro de cuotas y derramas', desde: 0 },
+      { t: 'Pago y control de proveedores', desde: 0 },
+      { t: 'Informe anual de gastos, balance y presupuesto', desde: 0 },
+      { t: 'Contabilidad por partida doble (Plan General de Contabilidad)', desde: 1 },
+      { t: 'Informes periódicos y comparación de cada gasto con el año anterior', desde: 1 },
+      { t: 'Facturas a disposición de cualquier propietario', desde: 1 },
+      { t: 'Extracto contable mensual a cada propietario', desde: 2 },
+      { t: 'Plan de control económico y negociación con proveedores', desde: 2 },
+    ],
+  },
+  {
+    grupo: 'Impagos',
+    filas: [
+      { t: 'Reclamación extrajudicial sin coste', desde: 0 },
+      { t: 'Reclamación judicial sin coste de abogados', desde: 1 },
+    ],
+  },
+  {
+    grupo: 'Juntas y documentación',
+    filas: [
+      { t: 'Convocatoria y asistencia a la junta ordinaria', desde: 1 },
+      { t: 'Actas, notificaciones y ejecución de los acuerdos', desde: 1 },
+      { t: 'Custodia de actas, contratos y documentos', desde: 1 },
+      { t: 'Juntas extraordinarias', desde: 2 },
+    ],
+  },
+  {
+    grupo: 'Edificio y proveedores',
+    filas: [
+      { t: 'Red de reparadores y empresas de mantenimiento', desde: 0 },
+      { t: 'Averías, siniestros y reclamaciones a la aseguradora', desde: 1 },
+      { t: 'Control de obras, presupuestos y facturas', desde: 1 },
+      { t: 'Descuentos con empresas de mantenimiento', desde: 1 },
+      { t: 'Plan de mantenimiento y consultas a arquitectos e ingenieros', desde: 2 },
+      { t: 'Tramitación de subvenciones y financiación de obras', desde: 2 },
+      { t: 'Reclamación de defectos de construcción en obra nueva', desde: 2 },
+    ],
+  },
+  {
+    grupo: 'Laboral, fiscal y legal',
+    filas: [
+      { t: 'Nóminas y seguros sociales de los empleados de la finca', desde: 1 },
+      { t: 'Impuestos y requerimientos de Hacienda', desde: 1 },
+      { t: 'Mediación entre vecinos', desde: 1 },
+      { t: 'Asesoramiento jurídico y fiscal integral', desde: 2 },
+    ],
+  },
+  {
+    grupo: 'Atención',
+    filas: [
+      { t: 'Atención personal y aviso de averías 24 horas', desde: 0 },
+      { t: 'TuComunidad: cuentas, actas y avisos desde el móvil', desde: 1, nota: '+0,50 € por vecino al mes' },
+      { t: 'Móvil de contacto 24 horas', desde: 2 },
+    ],
+  },
+];
+
+// Preguntas que conviene hacer a cualquier administrador antes de elegirlo, con las respuestas de Qfincas.
+const preguntas = [
+  { p: '¿A nombre de quién está la cuenta del banco?', r: 'A nombre de la comunidad, y la controla el presidente. No pagamos ninguna factura sin el visto bueno de la junta de gobierno.' },
+  { p: '¿Qué contabilidad lleva?', r: 'Partida doble según el Plan General de Contabilidad, no una lista de cobros y pagos. Comparamos cada gasto con el del año anterior y con el presupuesto aprobado.' },
+  { p: '¿Cada cuánto informa al presidente?', r: 'Cada semana, con un informe económico. Cada propietario recibe además un informe trimestral y un resumen anual.' },
+  { p: '¿Cuánto cuesta reclamar a un moroso?', r: 'La reclamación extrajudicial no cuesta nada. En las tarifas Media y Premium, el juicio tampoco cuesta abogados a la comunidad: cobramos de las costas que paga el moroso.' },
+  { p: '¿Quién elige a las empresas de las obras?', r: 'La junta. Pedimos presupuestos comparables y los analizamos, pero no participamos en la elección de contratistas ni proveedores.' },
+  { p: '¿Tiene abogados en el despacho?', r: `Sí. Somos administradores de fincas y abogados colegiados en el Colegio de Abogados de Madrid (${site.colegiado}).` },
+  { p: '¿Está colegiado y asegurado?', r: 'Sí. Estamos colegiados en el Colegio de Administradores de Fincas de Madrid, con seguro de responsabilidad civil y una fianza que avala la gestión del dinero de la comunidad.' },
+  { p: '¿Qué cobra aparte?', r: 'Te lo decimos por escrito antes de firmar, para que no haya sorpresas en la factura. Lo tienes justo debajo.' },
+];
+
+const aparte = [
+  'Certificados que pide un propietario, como el de estar al corriente de pago para vender su piso.',
+  'Cualquier gestión particular de un propietario: se le cobra a él, no a la comunidad.',
+  'Correos, burofax, fotocopias y otros gastos de envío.',
+  'Tasas judiciales y poderes ante notario, si hay que ir a juicio.',
+  'Juicios distintos de la reclamación a morosos.',
+  'Licencias, y declaraciones de Hacienda por alquilar zonas comunes como la portería o la azotea.',
+  'Cambio de banco de la comunidad.',
+  'Juntas que acaban después de las 21:30 o se celebran en fin de semana o festivo.',
+  'Juntas extraordinarias y tramitación de subvenciones, salvo en la tarifa Premium.',
 ];
 ---
-<Base titulo="Tarifas de administración de fincas" descripcion="Tres tarifas de administración de fincas para que elijas la que mejor se adapta a tu comunidad. Puedes cambiar de tarifa en cualquier momento.">
+<Base titulo="Tarifas de administración de fincas" descripcion="Tres tarifas de administración de fincas, Base, Media y Premium, con todo lo que incluye cada una y lo que se cobra aparte. Pide presupuesto sin compromiso.">
   <CabeceraPagina
     titulo="Tarifas"
     lead="No todas las comunidades son iguales. Elige el nivel de servicio que necesitas y cámbialo cuando quieras, en cualquier momento del contrato."
@@ -46,25 +158,75 @@ const detalle = [
             <h2 style="font-size:1.5rem">{p.nombre}</h2>
             <p style="color:var(--texto-suave)">{p.para}</p>
             <div class="plan__precio">{p.precio ? <strong>{p.precio}</strong> : <>Precio según el tamaño de tu comunidad</>}</div>
+            {p.previo && <p class="plan__previo">{p.previo}</p>}
             <ul class="lista-check">
-              {bloques.map((b, i) => <li class={i < p.incluye ? '' : 'no'}>{b}</li>)}
+              {p.puntos.map((x) => <li>{x}</li>)}
             </ul>
             <a class={`btn ${p.destacado ? 'btn--primario' : 'btn--secundario'}`} href={`/contacto/?tarifa=${p.nombre}#presupuesto`}>Pedir presupuesto</a>
           </div>
         ))}
       </div>
-      <p class="centrado" style="margin-top:32px;color:var(--texto-suave)">Todas las tarifas incluyen atención personal, canal de avisos 24 horas y acceso de los vecinos a TuComunidad.</p>
+      <p class="centrado" style="margin-top:32px;color:var(--texto-suave)">Precios sin IVA, actualizados una vez al año con el IPC. Puedes cambiar de tarifa en cualquier momento.</p>
     </div>
   </section>
 
   <section class="seccion seccion--crema">
     <div class="contenedor">
-      <h2>Qué incluye cada servicio</h2>
-      <div class="rejilla" style="margin-top:32px">
-        {detalle.map((x) => (
-          <div class="tarjeta"><h3>{x.t}</h3><p>{x.d}</p></div>
+      <h2>Qué incluye cada tarifa</h2>
+      <p class="lead">Todo por escrito, para que lo compares punto por punto con tu administrador actual.</p>
+      <div class="tabla-tarifas">
+        <table>
+          <caption class="solo-lector">Servicios incluidos en las tarifas Base, Media y Premium</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="solo-lector">Servicio</span></th>
+              {planes.map((p) => <th scope="col" class={p.destacado ? 'destacada' : ''}>{p.nombre}</th>)}
+            </tr>
+          </thead>
+          {tabla.map((g) => (
+            <tbody>
+              <tr class="grupo"><th scope="rowgroup" colspan="4">{g.grupo}</th></tr>
+              {g.filas.map((f) => (
+                <tr>
+                  <th scope="row">{f.t}</th>
+                  {planes.map((p, i) => (
+                    <td class={p.destacado ? 'destacada' : ''}>
+                      {i >= f.desde
+                        ? <span class="si"><span class="solo-lector">Incluido</span></span>
+                        : f.nota
+                          ? <span class="nota">{f.nota}</span>
+                          : <span class="no"><span class="solo-lector">No incluido</span></span>}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          ))}
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <span class="antetitulo">Compara antes de decidir</span>
+      <h2>Ocho preguntas para cualquier administrador</h2>
+      <p class="lead">Házselas a todos los despachos que te pasen presupuesto. Estas son nuestras respuestas.</p>
+      <div class="rejilla rejilla--2" style="margin-top:32px">
+        {preguntas.map((x) => (
+          <div class="tarjeta"><h3>{x.p}</h3><p>{x.r}</p></div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema" id="aparte">
+    <div class="contenedor prosa">
+      <h2>Lo que se factura aparte</h2>
+      <p>Estos servicios no entran en la cuota mensual. Si los necesitas, te decimos el precio antes de hacerlos.</p>
+      <ul>
+        {aparte.map((x) => <li>{x}</li>)}
+      </ul>
     </div>
   </section>
 

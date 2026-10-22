@@ -16,6 +16,7 @@
 # Otras páginas de WordPress
 /certificaciones/  /nosotros/certificaciones/  301
 /mapa-web/  /  301
+/secretaria/asesoria-juridica/  /servicios/asesoria-juridica/  301
 /category/*  /blog/  301
 /feed/  /blog/  301
 /comments/feed/  /blog/  301
