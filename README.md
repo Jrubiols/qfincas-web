@@ -19,6 +19,8 @@ npm run build      # genera la web en dist/
 | Textos de los servicios (una página cada uno) | `src/data/servicios.js` |
 | Tarifas: qué incluye cada nivel y precio | `src/pages/tarifas.astro` |
 | Noticias del blog | `src/pages/blog/index.astro` |
+| Páginas por barrio (textos, nº de comunidades, `revisado`) | `src/data/zonas.js` |
+| Avisos y urgencias | `src/pages/avisos-y-urgencias.astro` |
 | Colores y estilos | `src/styles/global.css` |
 | Cabecera, pie y barra móvil | `src/layouts/Base.astro` |
 | Imágenes y PDF | `public/img/`, `public/docs/` |
@@ -27,7 +29,9 @@ npm run build      # genera la web en dist/
 
 Busca `PENDIENTE` en el código:
 
-- Móvil de WhatsApp y código postal (`site.js`)
+- Móvil de WhatsApp (`site.js`): al ponerlo aparecen solos el botón flotante, el de la barra del móvil y el de contacto
+- Revisión de las páginas por barrio: cambiar `revisado` a `true` en `src/data/zonas.js`
+- Cómo se atienden las urgencias fuera de horario (`avisos-y-urgencias.astro`)
 - Precio de cada tarifa, y si Premium incluye juntas extraordinarias y subvenciones (`tarifas.astro`)
 - Razón social, NIF y nº de colegiado del CAF para el aviso legal y la privacidad
 - Texto completo y fecha de las noticias del blog

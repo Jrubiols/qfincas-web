@@ -5,7 +5,7 @@ import { site } from '../data/site.js';
 
 const preguntas = [
   { p: 'No pude ir a la junta. ¿Dónde veo el acta y el presupuesto aprobado?', r: 'Entra en TuComunidad y consulta el apartado de la junta de propietarios: allí están todas las actas y puedes descargar copias. El presupuesto detallado está en el apartado Presupuesto.' },
-  { p: 'Ha aparecido una gotera, no luce una bombilla o no funciona el telefonillo', r: 'Comunica la avería en TuComunidad y sigue su estado desde allí. Si es urgente, llámanos.' },
+  { p: 'Ha aparecido una gotera, no luce una bombilla o no funciona el telefonillo', r: 'Comunica la avería en TuComunidad y sigue su estado desde allí. Si es urgente, llámanos o mira qué hacer en nuestra página de avisos y urgencias.' },
   { p: 'Quiero que se trate un tema en la próxima junta', r: `Si es un asunto de interés general para la comunidad, escríbenos a ${site.email} y lo valoraremos con el presidente para incluirlo en el orden del día.` },
   { p: 'He vendido o comprado un piso en la comunidad', r: 'Comunícanos el cambio de titularidad y el domicilio a efectos de notificaciones. Si vendes, podemos emitir el certificado de deudas con la comunidad que pide el notario.' },
 ];
@@ -31,6 +31,7 @@ const preguntas = [
         <div class="tarjeta"><h3>Comunicar averías</h3><p>Avisa de una incidencia y sigue su estado hasta que se resuelva.</p></div>
       </div>
       <p style="margin-top:24px;color:var(--texto-suave)">¿No tienes usuario o has olvidado la contraseña? Escríbenos a <a href={`mailto:${site.email}`}>{site.email}</a> y te ayudamos.</p>
+      <p><strong>¿Una avería urgente?</strong> <a href="/avisos-y-urgencias/">Mira qué hacer y a quién avisar →</a></p>
     </div>
   </section>
 

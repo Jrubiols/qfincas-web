@@ -3,6 +3,8 @@
 // Funciona con Netlify Forms (atributo data-netlify): los envíos llegan al panel de Netlify
 // y se reenvían por correo a secretaría. Sin JavaScript se muestran los 3 pasos seguidos.
 import { servicios } from '../data/servicios.js';
+// zona: barrio ya rellenado cuando el formulario está en una página de zona
+const { zona = '' } = Astro.props;
 ---
 <form class="formulario" name="presupuesto" method="POST" action="/gracias/" data-netlify="true" netlify-honeypot="web" id="form-presupuesto">
   <input type="hidden" name="form-name" value="presupuesto" />
@@ -40,7 +42,7 @@ import { servicios } from '../data/servicios.js';
       </div>
       <div class="campo">
         <label for="zona">Barrio o municipio</label>
-        <input id="zona" name="zona" type="text" placeholder="Ej. Chamberí" />
+        <input id="zona" name="zona" type="text" placeholder="Ej. Chamberí" value={zona || undefined} />
       </div>
     </div>
   </div>
@@ -101,6 +103,7 @@ import { servicios } from '../data/servicios.js';
     <button type="button" class="btn btn--primario" data-accion="siguiente">Siguiente</button>
     <button type="submit" class="btn btn--primario" data-accion="enviar">Pedir presupuesto</button>
   </div>
+  <p class="form-promesa">Te respondemos en menos de 24 horas laborables.</p>
 </form>
 
 <script>

@@ -9,7 +9,7 @@ const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURICompone
 <Base titulo="Contacto y presupuesto" descripcion={`Pide presupuesto a Qfincas o visítanos en ${site.direccion}, ${site.ciudad}. Teléfono ${site.telefono}.`}>
   <CabeceraPagina
     titulo="Contacto"
-    lead="Pídenos presupuesto sin compromiso o ven a vernos al despacho."
+    lead="Pídenos presupuesto sin compromiso o ven a vernos al despacho. Te respondemos en menos de 24 horas laborables."
     migas={[{ label: 'Contacto' }]}
   />
 
@@ -20,6 +20,12 @@ const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURICompone
         <div class="tarjeta">
           <h3>Teléfono</h3>
           <p><a href={`tel:${site.telefonoLink}`} style="font-size:1.3rem;font-weight:700">{site.telefono}</a></p>
+          {site.whatsapp && (
+            <>
+              <h3>WhatsApp</h3>
+              <p><a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">Escríbenos por WhatsApp →</a></p>
+            </>
+          )}
           <h3>Email</h3>
           <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
           <h3>Despacho</h3>

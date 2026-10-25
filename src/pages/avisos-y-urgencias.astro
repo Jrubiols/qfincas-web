@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import { site } from '../data/site.js';
+
+// PENDIENTE DE CONFIRMAR CON QFINCAS: si hay un teléfono de urgencias fuera de horario para todas las
+// comunidades (hoy solo consta el móvil 24 h de la tarifa Premium) y cómo se atienden los avisos de noche.
+const horario = site.horario.map((h) => `${h.dias.toLowerCase()} de ${h.horas}`).join(' y ');
+const preguntas = [
+  { p: '¿La avería es de la comunidad o de mi vivienda?', r: 'Lo que está en las zonas comunes (portal, escalera, tejado, fachada, bajantes generales, ascensor) lo gestiona la comunidad. Lo que está dentro de tu vivienda y solo te da servicio a ti (tus grifos, tus enchufes, tu caldera) es tuyo. Si dudas, avísanos y lo vemos.' },
+  { p: 'Me cae agua del piso de arriba', r: 'Avisa primero al vecino de arriba para que cierre la llave de paso, y da parte a tu seguro de hogar. Si el agua viene de una bajante o de la cubierta, es de la comunidad: avísanos en TuComunidad y nos ocupamos del siniestro.' },
+  { p: '¿Cuánto tardáis en atender un aviso?', r: 'Los avisos que llegan en horario de oficina los registramos y gestionamos ese mismo día. Los que llegan por la noche o en fin de semana, a primera hora del siguiente día laborable, salvo que los cubra la asistencia 24 horas del seguro.' },
+];
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((x) => ({ '@type': 'Question', name: x.p, acceptedAnswer: { '@type': 'Answer', text: x.r } })),
+};
+---
+<Base titulo="Avisos y urgencias" descripcion="Qué hacer si hay una avería o una urgencia en tu comunidad: a quién avisar, cómo hacerlo a cualquier hora y qué pasa después.">
+  <CabeceraPagina
+    titulo="Avisos y urgencias"
+    lead="Qué hacer si hay una avería en tu comunidad, cómo avisarnos a cualquier hora y qué pasa después."
+    migas={[{ label: 'Avisos y urgencias' }]}
+  >
+    <div class="botones" style="margin-top:24px">
+      <a class="btn btn--primario" href={site.tucomunidad} target="_blank" rel="noopener">Avisar en TuComunidad</a>
+      <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar al {site.telefono}</a>
+    </div>
+  </CabeceraPagina>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="aviso-peligro">
+        <h2>Si hay peligro, llama primero al 112</h2>
+        <p>Fuego, olor a gas, una inundación que no puedes cortar o riesgo de que algo se caiga: llama al <a href="tel:112"><strong>112</strong></a>. Si alguien se queda encerrado en el ascensor, que pulse el botón de alarma de la cabina: avisa a la empresa de mantenimiento, que atiende las 24 horas. Después, avísanos.</p>
+      </div>
+
+      <h2 style="margin-top:56px">Cómo avisarnos</h2>
+      <div class="rejilla rejilla--3" style="margin-top:24px">
+        <div class="tarjeta">
+          <h3>En TuComunidad, las 24 horas</h3>
+          <p>Comunica la avería desde el móvil, mejor con una foto. Queda registrada y puedes seguir su estado hasta que se resuelva.</p>
+          <p style="margin:0"><a href={site.tucomunidad} target="_blank" rel="noopener">Entrar en TuComunidad →</a></p>
+        </div>
+        <div class="tarjeta">
+          <h3>Por teléfono, en horario de oficina</h3>
+          <p><a href={`tel:${site.telefonoLink}`} style="font-size:1.2rem;font-weight:700">{site.telefono}</a></p>
+          <p style="margin:0">De {horario}.</p>
+        </div>
+        <div class="tarjeta">
+          <h3>Por email</h3>
+          <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+          <p style="margin:0">Para avisos que no corren prisa, con las fotos que quieras adjuntar.</p>
+        </div>
+      </div>
+      <p style="margin-top:24px;color:var(--texto-suave)">Si tu comunidad tiene la <a href="/tarifas/">tarifa Premium</a>, el presidente tiene además un móvil de contacto 24 horas.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <h2 class="centrado">Qué pasa después</h2>
+      <ol class="pasos" style="margin-top:40px">
+        <li><h3>Registramos el aviso</h3><p>El mismo día si llega en horario de oficina. Si llega por la noche o en fin de semana, a primera hora del siguiente día laborable.</p></li>
+        <li><h3>Avisamos a quien corresponde</h3><p>A la empresa de mantenimiento, a un reparador de confianza o a la aseguradora de la comunidad, si es un siniestro.</p></li>
+        <li><h3>Seguimos la reparación</h3><p>Hasta que el trabajo está terminado y bien hecho. Puedes ver cómo va en TuComunidad.</p></li>
+        <li><h3>Tramitamos el seguro</h3><p>Si la avería la cubre la póliza, nos encargamos del parte y de reclamar la indemnización.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor dos-col" style="align-items:start">
+      <div class="prosa">
+        <span class="antetitulo">Fuera de horario</span>
+        <h2>El seguro de la comunidad también ayuda</h2>
+        <p>La mayoría de las pólizas de comunidad incluyen <strong>asistencia urgente las 24 horas</strong> para fugas de agua, cerrajería o electricidad en las zonas comunes. El teléfono está en la póliza: lo tiene el presidente y, si no lo encuentras, te lo damos.</p>
+        <p>Si llamas a la asistencia del seguro, avísanos también en TuComunidad para que hagamos el seguimiento y tramitemos el siniestro.</p>
+      </div>
+      <div class="prosa">
+        <h2>Preguntas frecuentes</h2>
+        <div class="preguntas">
+          {preguntas.map((x) => <details><summary>{x.p}</summary><p>{x.r}</p></details>)}
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Base>

@@ -12,6 +12,11 @@ const actual = (href) => (href === '/' ? ruta === '/' : ruta.startsWith(href));
 
 const grupos = ['Administración', 'Derecho'];
 
+// Enlace de WhatsApp con un mensaje ya escrito. Si site.whatsapp es null, no se muestra ningún botón.
+const whatsapp = site.whatsapp
+  ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Hola, quería información sobre la administración de mi comunidad.')}`
+  : null;
+
 // Netlify define URL con la dirección del despliegue. Mientras no sea qfincas.com
 // (p. ej. qfincas.netlify.app) se pide a Google que no indexe, para no duplicar la web actual.
 const urlDespliegue = process.env.URL || '';
@@ -70,6 +75,7 @@ const jsonLd = {
         <div class="barra-sup__datos">
           <a href={`tel:${site.telefonoLink}`}>{site.telefono}</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href="/avisos-y-urgencias/">Avisos y urgencias</a>
           <a href={site.tucomunidad} target="_blank" rel="noopener">Acceso TuComunidad →</a>
         </div>
       </div>
@@ -138,6 +144,8 @@ const jsonLd = {
             <li><a href="/tarifas/">Tarifas</a></li>
             <li><a href="/cambiar-de-administrador/">Cambiar de administrador</a></li>
             <li><a href="/vecinos/">Soy vecino</a></li>
+            <li><a href="/avisos-y-urgencias/">Avisos y urgencias</a></li>
+            <li><a href="/donde-trabajamos/">Dónde trabajamos</a></li>
             <li><a href="/blog/">Blog</a></li>
             <li><a href="/nosotros/trabaja/">Trabaja con nosotros</a></li>
           </ul>
@@ -165,9 +173,16 @@ const jsonLd = {
 
   <div class="barra-movil">
     <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar</a>
-    {site.whatsapp && <a class="btn btn--secundario" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener">WhatsApp</a>}
+    {whatsapp && <a class="btn btn--secundario" href={whatsapp} target="_blank" rel="noopener">WhatsApp</a>}
     <a class="btn btn--primario" href="/contacto/#presupuesto">Presupuesto</a>
   </div>
+
+  {whatsapp && (
+    <a class="whatsapp-flotante" href={whatsapp} target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5z" /></svg>
+      <span>¿Dudas? Escríbenos</span>
+    </a>
+  )}
 
   <script>
     const cab = document.getElementById('cabecera');

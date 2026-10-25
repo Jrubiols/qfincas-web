@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import Cta from '../components/Cta.astro';
+import { zonas, otrasZonas } from '../data/zonas.js';
+---
+<Base titulo="Dónde trabajamos" descripcion="Barrios de Madrid donde Qfincas ya administra comunidades de propietarios: Valdebebas, Guindalera, Tetuán y Barrio del Pilar, Centro, Chamartín y más.">
+  <CabeceraPagina
+    titulo="Dónde trabajamos"
+    lead="Administramos comunidades en toda la ciudad de Madrid y en varios municipios de alrededor. Estos son los barrios donde más comunidades llevamos."
+    migas={[{ label: 'Dónde trabajamos' }]}
+  />
+
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="rejilla">
+        {zonas.map((z) => (
+          <a class="tarjeta tarjeta--enlace" href={`/administrador-de-fincas-${z.slug}/`}>
+            <span class="etiqueta">{z.distrito}</span>
+            <h3>{z.corto ?? z.nombre}</h3>
+            <p>{z.comunidades} comunidades administradas</p>
+            <span class="tarjeta__mas">Ver la zona →</span>
+          </a>
+        ))}
+      </div>
+      <h2 style="margin-top:56px">También llevamos comunidades en</h2>
+      <ul class="zonas-lista">
+        {otrasZonas.map((o) => <li><span>{o}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Cta titulo="¿Tu barrio no está en la lista?" texto="Trabajamos en Madrid y en los municipios de alrededor. Cuéntanos dónde está tu comunidad y te preparamos un presupuesto." />
+</Base>

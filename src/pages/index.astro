@@ -4,6 +4,7 @@ import PresupuestoForm from '../components/PresupuestoForm.astro';
 import { servicios } from '../data/servicios.js';
 import { site } from '../data/site.js';
 import { entradas } from '../data/blog.js';
+import { zonas } from '../data/zonas.js';
 const guias = entradas.filter((e) => e.tipo === 'Guía');
 
 // PENDIENTE: si Qfincas publica un precio orientativo o confirma "sin permanencia", añadirlo aquí.
@@ -12,7 +13,7 @@ const preguntas = [
   { p: '¿Podemos cambiar de tarifa más adelante?', r: 'Sí. Puedes cambiar de tarifa en cualquier momento del contrato.' },
   { p: '¿Cómo cambiamos de administrador?', r: 'La junta de propietarios acuerda el cambio y nosotros nos encargamos de pedir toda la documentación al administrador anterior. Te lo explicamos paso a paso en nuestra página sobre el cambio de administrador.' },
   { p: '¿Sois administradores colegiados?', r: `Sí. Estamos colegiados en el Colegio de Administradores de Fincas de Madrid y en el Colegio de Abogados de Madrid (${site.colegiado}).` },
-  { p: '¿Qué pasa si hay una urgencia fuera de horario?', r: 'Tienes un canal de avisos e incidencias 24 horas. Además, los vecinos pueden comunicar averías y seguir su estado en TuComunidad.' },
+  { p: '¿Qué pasa si hay una urgencia fuera de horario?', r: 'Los vecinos pueden comunicar la avería a cualquier hora en TuComunidad, y el seguro de la comunidad suele incluir asistencia urgente las 24 horas. Si hay peligro, lo primero es llamar al 112. Te lo explicamos en nuestra página de avisos y urgencias.' },
   { p: '¿Los vecinos pueden ver las cuentas y las actas?', r: 'Sí. Desde TuComunidad cada propietario consulta las actas, el presupuesto y el estado económico. El presidente recibe además un informe económico semanal.' },
 ];
 const faqLd = {
@@ -206,6 +207,11 @@ const faqLd = {
             <a class="btn btn--secundario btn--peq" href="/vecinos/">Ayuda para vecinos</a>
           </div>
         </div>
+        <h3 style="margin-top:32px">Dónde trabajamos</h3>
+        <ul class="zonas-lista">
+          {zonas.map((z) => <li><a href={`/administrador-de-fincas-${z.slug}/`}>{z.corto ?? z.nombre}</a></li>)}
+          <li><a href="/donde-trabajamos/">Más zonas</a></li>
+        </ul>
       </div>
       <PresupuestoForm />
     </div>

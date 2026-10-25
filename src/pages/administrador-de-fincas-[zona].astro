@@ -1,0 +1,97 @@
+---
+// Una página por zona donde Qfincas ya tiene comunidades (contenido en src/data/zonas.js)
+import Base from '../layouts/Base.astro';
+import CabeceraPagina from '../components/CabeceraPagina.astro';
+import PresupuestoForm from '../components/PresupuestoForm.astro';
+import { zonas } from '../data/zonas.js';
+import { site } from '../data/site.js';
+
+export function getStaticPaths() {
+  return zonas.map((z) => ({ params: { zona: z.slug }, props: { z } }));
+}
+
+const { z } = Astro.props;
+const borrador = z.revisado === false;
+const corto = z.corto ?? z.nombre;
+const otras = zonas.filter((x) => x.slug !== z.slug);
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: z.preguntas.map((x) => ({ '@type': 'Question', name: x.p, acceptedAnswer: { '@type': 'Answer', text: x.r } })),
+};
+---
+<Base titulo={`Administrador de fincas en ${corto}`} descripcion={z.descripcion} noindex={borrador}>
+  <CabeceraPagina
+    titulo={`Administrador de fincas en ${z.nombre}`}
+    lead={z.intro}
+    migas={[{ label: 'Dónde trabajamos', href: '/donde-trabajamos/' }, { label: corto }]}
+  >
+    {borrador && <p class="destacado">Borrador pendiente de revisión por el despacho. No se mostrará en Google hasta que esté revisado.</p>}
+    <div class="botones" style="margin-top:24px">
+      <a class="btn btn--primario" href="#presupuesto">Pide presupuesto</a>
+      <a class="btn btn--secundario" href={`tel:${site.telefonoLink}`}>Llamar al {site.telefono}</a>
+    </div>
+  </CabeceraPagina>
+
+  <section class="seccion">
+    <div class="contenedor dos-col" style="align-items:start">
+      <div class="prosa">
+        <span class="antetitulo">{z.distrito}</span>
+        <h2>Así son las comunidades de {z.nombre}</h2>
+        {z.como.map((t) => <p>{t}</p>)}
+        <p>También atendemos los barrios de alrededor: {z.cerca.join(', ')}.</p>
+      </div>
+      <div class="tarjeta">
+        <h3>Por qué Qfincas</h3>
+        <ul class="lista-check">
+          <li>Administradores de fincas y abogados en el mismo despacho</li>
+          <li>Informe económico semanal al presidente</li>
+          <li>Reclamación de impagos sin coste para la comunidad</li>
+          <li>Cuentas, actas y avisos de averías en TuComunidad, las 24 horas</li>
+        </ul>
+        <p style="margin:16px 0 0"><a href="/tarifas/">Ver tarifas y qué incluye cada una →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--crema">
+    <div class="contenedor">
+      <h2>Lo que más nos piden en {z.nombre}</h2>
+      <div class="rejilla rejilla--2" style="margin-top:32px">
+        {z.temas.map((x) => <div class="tarjeta"><h3>{x.t}</h3><p>{x.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor prosa" style="margin:0 auto">
+      <h2>Preguntas frecuentes</h2>
+      <div class="preguntas">
+        {z.preguntas.map((x) => (
+          <details>
+            <summary>{x.p}</summary>
+            <p>{x.r}</p>
+            {x.enlace && <p><a href={x.enlace.href}>{x.enlace.texto} →</a></p>}
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <section class="seccion seccion--crema" id="presupuesto">
+    <div class="contenedor dos-col" style="align-items:start">
+      <div>
+        <span class="antetitulo">Presupuesto sin compromiso</span>
+        <h2>¿Tu comunidad está en {z.nombre}?</h2>
+        <p class="lead">Cuéntanos cómo es y te enviamos un presupuesto adaptado. Te respondemos en menos de 24 horas laborables.</p>
+        <h3 style="margin-top:32px">También trabajamos en</h3>
+        <ul class="zonas-lista">
+          {otras.map((o) => <li><a href={`/administrador-de-fincas-${o.slug}/`}>{o.corto ?? o.nombre}</a></li>)}
+          <li><a href="/donde-trabajamos/">Ver todas las zonas</a></li>
+        </ul>
+      </div>
+      <PresupuestoForm zona={corto} />
+    </div>
+  </section>
+</Base>

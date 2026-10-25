@@ -10,8 +10,7 @@ export const site = {
   email: 'secretaria@qfincas.com',
   direccion: 'C/ Jordi Solé Tura 9, local 5',
   ciudad: 'Madrid',
-  // Pendiente: código postal exacto.
-  cp: '',
+  cp: '28055', // el de su oferta oficial (Valdebebas)
   horario: [
     { dias: 'Lunes a jueves', horas: '9:00 a 18:00' },
     { dias: 'Viernes', horas: '9:00 a 15:00' },
