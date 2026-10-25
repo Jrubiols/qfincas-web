@@ -22,6 +22,7 @@ Guía para el día en que qfincas.com deje de mostrar el WordPress y muestre est
   - Bajar el **TTL** de los registros `qfincas.com` (A) y `www` (CNAME) a **300**, un día antes. Así, si hay que volver atrás, se nota en 5 minutos y no en horas.
 - [ ] Descargar una **copia de seguridad completa del WordPress** desde Webempresa.
 - [ ] En Netlify, ir a **Forms → Submission notifications** y añadir un aviso por email a `secretaria@qfincas.com`. Enviar un presupuesto de prueba y comprobar que llega.
+- [ ] En Netlify, **apagar el distintivo "Powered by Netlify"**: Project configuration → General → Powered by Netlify badge. En el plan gratuito sale abajo a la derecha y, en el móvil, tapa el botón "Presupuesto" de la barra inferior. Se quita al momento, sin volver a desplegar.
 
 ## El día del cambio
 
