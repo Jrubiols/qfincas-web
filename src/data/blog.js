@@ -149,12 +149,12 @@ El presidente / Los propietarios convocantes</pre>
     slug: 'entrega-diploma-25-anos-colegiacion',
     tipo: 'Noticia',
     fecha: '2021',
-    titulo: 'Diploma por 25 años de colegiación en el Colegio de Abogados de Madrid',
-    resumen: 'El Ilustre Colegio de Abogados de Madrid reconoce a Alberto Cano Alsúa sus 25 años como colegiado.',
+    titulo: 'Diploma por 25 años de colegiación en el Colegio de la Abogacía de Madrid',
+    resumen: 'El Ilustre Colegio de la Abogacía de Madrid reconoce a Alberto Cano Alsúa sus 25 años como colegiado.',
     imagen: '/img/blog/logo-icam.png',
     cuerpo: `
-      <p>El Ilustre Colegio de Abogados de Madrid (ICAM) ha concedido a Alberto Cano Alsúa, director de Qfincas, el diploma conmemorativo por sus 25 años de colegiación. Alberto se incorporó al Colegio en mayo de 1996 y sigue ejerciendo como abogado.</p>
-      <p>Con este diploma el Colegio reconoce a quienes, con su perseverancia, honran la profesión. Para nuestras comunidades significa algo muy concreto: el administrador que lleva sus cuentas es, además, un abogado con 25 años de experiencia.</p>
+      <p>El Ilustre Colegio de la Abogacía de Madrid (ICAM) ha concedido a Alberto Cano Alsúa, director de Qfincas, el diploma conmemorativo por sus 25 años de colegiación. Alberto se incorporó al Colegio en mayo de 1996 y sigue ejerciendo como abogado.</p>
+      <p>Con este diploma el Colegio reconoce a quienes, con su perseverancia, honran la profesión. Para nuestras comunidades significa algo muy concreto: el administrador que lleva sus cuentas es, además, un abogado con más de 30 años de experiencia.</p>
     `,
   },
   {

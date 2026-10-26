@@ -12,7 +12,7 @@ const preguntas = [
   { p: '¿Cuánto cuesta el administrador de fincas?', r: 'Depende del número de viviendas, de si hay garaje, piscina o empleados, y de la tarifa que elijas. Cuéntanos cómo es tu comunidad y te enviamos un presupuesto cerrado sin compromiso.' },
   { p: '¿Podemos cambiar de tarifa más adelante?', r: 'Sí. Puedes cambiar de tarifa en cualquier momento del contrato.' },
   { p: '¿Cómo cambiamos de administrador?', r: 'La junta de propietarios acuerda el cambio y nosotros nos encargamos de pedir toda la documentación al administrador anterior. Te lo explicamos paso a paso en nuestra página sobre el cambio de administrador.' },
-  { p: '¿Sois administradores colegiados?', r: `Sí. Estamos colegiados en el Colegio de Administradores de Fincas de Madrid y en el Colegio de Abogados de Madrid (${site.colegiado}).` },
+  { p: '¿Sois administradores colegiados?', r: `Sí. Estamos colegiados en el Colegio Profesional de Administradores de Fincas de Madrid (${site.colegiadoCaf}) y en el Ilustre Colegio de la Abogacía de Madrid (${site.colegiado}).` },
   { p: '¿Qué pasa si hay una urgencia fuera de horario?', r: 'Los vecinos pueden comunicar la avería a cualquier hora en TuComunidad, y el seguro de la comunidad suele incluir asistencia urgente las 24 horas. Si hay peligro, lo primero es llamar al 112. Te lo explicamos en nuestra página de avisos y urgencias.' },
   { p: '¿Los vecinos pueden ver las cuentas y las actas?', r: 'Sí. Desde TuComunidad cada propietario consulta las actas, el presupuesto y el estado económico. El presidente recibe además un informe económico semanal.' },
 ];
@@ -34,8 +34,9 @@ const faqLd = {
         <a class="btn btn--claro" href="/servicios/">Ver servicios</a>
       </div>
       <ul class="hero__sellos">
+        <li>Administrador de fincas colegiado ({site.colegiadoCaf})</li>
         <li>Abogado colegiado ({site.colegiado})</li>
-        <li>Más de 25 años en la profesión</li>
+        <li>Más de 30 años en la profesión</li>
         <li>Informe económico semanal al presidente</li>
       </ul>
     </div>
@@ -43,8 +44,8 @@ const faqLd = {
 
   <div class="contenedor">
     <div class="cifras cifras--flotante">
-      <div class="cifra"><strong>+25 años</strong><span>de colegiación como administradores de fincas</span></div>
-      <div class="cifra"><strong>Abogados</strong><span>colegiados en el Colegio de Abogados de Madrid</span></div>
+      <div class="cifra"><strong>+30 años</strong><span>de profesión como administradores de fincas</span></div>
+      <div class="cifra"><strong>Abogados</strong><span>colegiados en el Colegio de la Abogacía de Madrid</span></div>
       <div class="cifra"><strong>Semanal</strong><span>informe económico al presidente de la comunidad</span></div>
       <div class="cifra"><strong>Sin coste</strong><span>reclamación extrajudicial de impagos</span></div>
     </div>
@@ -150,12 +151,12 @@ const faqLd = {
       <h2>Formamos a otros administradores</h2>
       <div class="rejilla" style="margin-top:32px">
         <div class="tarjeta">
-          <h3>25 años de colegiación</h3>
-          <p>Reconocimiento del Colegio Profesional de Administradores de Fincas de Madrid por 25 años de profesión.</p>
+          <h3>Más de 30 años de profesión</h3>
+          <p>Colegiado nº 6711 del Colegio Profesional de Administradores de Fincas de Madrid, que en 2020 le concedió la mención «A los 25 años de ejercicio de la profesión».</p>
         </div>
         <div class="tarjeta">
           <h3>Docencia</h3>
-          <p>Alberto Cano dirige el Máster Inmobiliario de ISDE desde 2012 y el curso de especialización en administración de fincas de Economist & Jurist.</p>
+          <p>Alberto Cano dirigió el Máster Inmobiliario de ISDE, donde también fue profesor durante más de 10 años, y dirige el curso de especialización en administración de fincas de Economist & Jurist.</p>
         </div>
         <div class="tarjeta">
           <h3>En los medios</h3>

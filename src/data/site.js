@@ -17,6 +17,7 @@ export const site = {
   ],
   tucomunidad: 'https://www.tucomunidad.com/',
   colegiado: 'ICAM nº 59437',
+  colegiadoCaf: 'CAF Madrid nº 6711',
 };
 
 export const nav = [
