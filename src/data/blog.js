@@ -170,14 +170,14 @@ El presidente / Los propietarios convocantes</pre>
     `,
   },
   {
-    slug: 'alberto-cano-alsua-y-maria-galan-participan-como-director-y-profesora-en-el-area-academica-executive-del-economist-jurist-school-s-l',
+    slug: 'alberto-cano-director-del-curso-de-administracion-de-fincas-de-economist-jurist',
     tipo: 'Noticia',
     fecha: '2019',
-    titulo: 'Alberto Cano y María Galán, director y profesora en Economist & Jurist',
-    resumen: 'Participan en el área Executive de Economist & Jurist School impartiendo el curso de especialización en administración de fincas y real estate management.',
+    titulo: 'Alberto Cano, director del curso de administración de fincas de Economist & Jurist',
+    resumen: 'Dirige en el área Executive de Economist & Jurist School el curso de especialización en administración de fincas y real estate management.',
     imagen: '/img/blog/logo-economist.png',
     cuerpo: `
-      <p>Alberto Cano Alsúa y María Galán participan como director y profesora en el área académica Executive de Economist & Jurist School, en el curso de especialización en administración de fincas y real estate management, que se imparte en línea.</p>
+      <p>Alberto Cano Alsúa dirige, en el área académica Executive de Economist & Jurist School, el curso de especialización en administración de fincas y real estate management, que se imparte en línea.</p>
       <p>La primera edición, en 2019, tuvo 48 horas acreditadas, además de las tutorías en línea con el alumnado. Formar a otros administradores nos obliga a estar al día de cada cambio legal, y eso es lo que aplicamos después en tu comunidad.</p>
     `,
   },
