@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icono from '../components/Icono.astro';
 import PresupuestoForm from '../components/PresupuestoForm.astro';
 import { servicios } from '../data/servicios.js';
 import { site } from '../data/site.js';
@@ -77,10 +78,10 @@ const faqLd = {
       <span class="antetitulo">Incluido sin coste extra</span>
       <h2>Lo que otros cobran aparte, con nosotros va incluido</h2>
       <div class="rejilla" style="margin-top:32px">
-        <div class="tarjeta"><h3>Reclamación de impagos</h3><p>Reclamamos a los morosos por la vía extrajudicial sin coste para la comunidad.</p></div>
-        <div class="tarjeta"><h3>Asesoría jurídica</h3><p>Resolvemos tus dudas sobre la Ley de Propiedad Horizontal sin cobrar la consulta.</p></div>
-        <div class="tarjeta"><h3>Consulta técnica</h3><p>Nuestros arquitectos e ingenieros atienden gratis tus consultas sobre obras e instalaciones.</p></div>
-        <div class="tarjeta"><h3>Descuentos</h3><p>Negociamos con las empresas de mantenimiento para bajar la cuota de tu comunidad.</p></div>
+        <div class="tarjeta"><span class="tarjeta__icono"><Icono nombre="impagos" /></span><h3>Reclamación de impagos</h3><p>Reclamamos a los morosos por la vía extrajudicial sin coste para la comunidad.</p></div>
+        <div class="tarjeta"><span class="tarjeta__icono"><Icono nombre="juridica" /></span><h3>Asesoría jurídica</h3><p>Resolvemos tus dudas sobre la Ley de Propiedad Horizontal sin cobrar la consulta.</p></div>
+        <div class="tarjeta"><span class="tarjeta__icono"><Icono nombre="tecnica" /></span><h3>Consulta técnica</h3><p>Nuestros arquitectos e ingenieros atienden gratis tus consultas sobre obras e instalaciones.</p></div>
+        <div class="tarjeta"><span class="tarjeta__icono"><Icono nombre="descuento" /></span><h3>Descuentos</h3><p>Negociamos con las empresas de mantenimiento para bajar la cuota de tu comunidad.</p></div>
       </div>
     </div>
   </section>
@@ -151,14 +152,17 @@ const faqLd = {
       <h2>Formamos a otros administradores</h2>
       <div class="rejilla" style="margin-top:32px">
         <div class="tarjeta">
+          <span class="tarjeta__icono"><Icono nombre="premio" /></span>
           <h3>Más de 30 años de profesión</h3>
           <p>Colegiado nº 6711 del Colegio Profesional de Administradores de Fincas de Madrid, que en 2020 le concedió la mención «A los 25 años de ejercicio de la profesión».</p>
         </div>
         <div class="tarjeta">
+          <span class="tarjeta__icono"><Icono nombre="docencia" /></span>
           <h3>Docencia</h3>
           <p>Alberto Cano dirigió el Máster Inmobiliario de ISDE, donde también fue profesor durante más de 10 años, y dirige el curso de especialización en administración de fincas de Economist & Jurist.</p>
         </div>
         <div class="tarjeta">
+          <span class="tarjeta__icono"><Icono nombre="medios" /></span>
           <h3>En los medios</h3>
           <p>Artículos en la revista Inmueble y aparición en RTVE explicando el dividendo digital a las comunidades.</p>
         </div>

@@ -1,0 +1,19 @@
+---
+// Franja con los datos que dan confianza: años, colegiaciones y comunidades, con los logos de los colegios.
+import { site } from '../data/site.js';
+---
+<section class="confianza" aria-label="Por qué confiar en Qfincas">
+  <div class="contenedor confianza__fila">
+    <ul class="confianza__datos">
+      <li><strong>+30 años</strong><span>en la profesión</span></li>
+      <li><strong>{site.colegiadoCaf}</strong><span>Administradores de Fincas</span></li>
+      <li><strong>{site.colegiado}</strong><span>Colegio de la Abogacía de Madrid</span></li>
+      <li><strong>+70</strong><span>comunidades administradas</span></li>
+    </ul>
+    <div class="confianza__logos">
+      <img src="/img/blog/logo-cafm.png" alt="Colegio Profesional de Administradores de Fincas de Madrid" width="241" height="169" loading="lazy" />
+      <img src="/img/blog/logo-icam.png" alt="Ilustre Colegio de la Abogacía de Madrid" width="900" height="324" loading="lazy" />
+      <img src="/img/blog/logo-economist.png" alt="Economist & Jurist" width="400" height="104" loading="lazy" />
+    </div>
+  </div>
+</section>

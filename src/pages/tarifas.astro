@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import CabeceraPagina from '../components/CabeceraPagina.astro';
+import FranjaConfianza from '../components/FranjaConfianza.astro';
 import Cta from '../components/Cta.astro';
 import { site } from '../data/site.js';
 
@@ -124,7 +125,7 @@ const aparte = [
 ];
 ---
 <Base titulo="Tarifas de administración de fincas" descripcion="Tres tarifas de administración de fincas, Base, Media y Premium, con todo lo que incluye cada una y lo que se cobra aparte. Pide presupuesto sin compromiso.">
-  <CabeceraPagina
+  <CabeceraPagina imagen="/img/s-consultoria.webp"
     titulo="Tarifas"
     lead="No todas las comunidades son iguales. Elige el nivel de servicio que necesitas y cámbialo cuando quieras, en cualquier momento del contrato."
     migas={[{ label: 'Tarifas' }]}
@@ -210,6 +211,8 @@ const aparte = [
       </ul>
     </div>
   </section>
+
+  <FranjaConfianza />
 
   <Cta titulo="¿Qué tarifa encaja con tu comunidad?" texto="Cuéntanos cuántas viviendas tiene y qué necesitáis, y te lo decimos sin compromiso." />
 </Base>

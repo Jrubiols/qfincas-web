@@ -1,5 +1,10 @@
 ---
-const { titulo, lead, migas = [] } = Astro.props;
+// `imagen` (opcional): foto de la cabecera, a la derecha y oscurecida, con el título en blanco.
+const { titulo, lead, migas = [], imagen } = Astro.props;
+// Variantes ligeras que ya hay en /img: -480 para móvil (madrid-800 ya es ligera)
+const srcset = imagen && !imagen.endsWith('-800.webp')
+  ? `${imagen.replace('.webp', '-480.webp')} 480w, ${imagen} ${imagen.includes('/s-') ? 779 : 1100}w`
+  : undefined;
 
 // Migas de pan para Google (BreadcrumbList). La última miga es la página actual.
 const base = Astro.site;
@@ -11,7 +16,8 @@ const items = [{ label: 'Inicio', href: '/' }, ...migas].map((m, i, todas) => ({
 }));
 const migasLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items };
 ---
-<section class="cabecera-pagina">
+<section class={imagen ? 'cabecera-pagina cabecera-pagina--foto' : 'cabecera-pagina'}>
+  {imagen && <img class="cabecera-pagina__foto" src={imagen} srcset={srcset} sizes="(max-width: 760px) 100vw, 55vw" alt="" width="1100" height="600" fetchpriority="high" />}
   <div class="contenedor">
     <nav class="migas" aria-label="Estás en">
       <a href="/">Inicio</a>

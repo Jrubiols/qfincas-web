@@ -206,6 +206,35 @@ p { margin: 0 0 1em; }
 .cabecera-pagina { background: var(--crema); padding: 56px 0 48px; border-bottom: 1px solid var(--borde); }
 .migas { font-size: .88rem; color: var(--texto-suave); margin-bottom: 12px; }
 .migas a { color: var(--texto-suave); }
+/* Cabecera con foto: la foto a la derecha, fundida con el negro de marca, y el texto en blanco */
+.cabecera-pagina--foto { position: relative; overflow: hidden; background: var(--negro); border-bottom: 0; padding: 72px 0 64px; }
+.cabecera-pagina__foto { position: absolute; top: 0; right: 0; width: 58%; height: 100%; max-width: none; object-fit: cover; }
+.cabecera-pagina--foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--negro) 0%, var(--negro) 40%, rgba(32,15,17,.72) 62%, rgba(32,15,17,.3) 100%); }
+.cabecera-pagina--foto .contenedor { position: relative; z-index: 1; }
+.cabecera-pagina--foto h1 { color: #fff; max-width: 22ch; }
+.cabecera-pagina--foto .lead { color: #eadede; }
+.cabecera-pagina--foto .migas, .cabecera-pagina--foto .migas a { color: #cdbfc0; }
+.cabecera-pagina--foto .btn--secundario { color: #fff; border-color: #fff; }
+.cabecera-pagina--foto .btn--secundario:hover { background: #fff; color: var(--negro); }
+@media (max-width: 760px) {
+  .cabecera-pagina__foto { width: 100%; }
+  .cabecera-pagina--foto::after { background: rgba(32,15,17,.84); }
+}
+/* Iconos en tarjetas y en los datos de contacto */
+.icono { width: 24px; height: 24px; flex: none; }
+.tarjeta__icono { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--rojo-suave); color: var(--rojo); margin-bottom: 18px; }
+.con-icono { display: flex; align-items: center; gap: 10px; }
+.con-icono .icono { width: 20px; height: 20px; color: var(--rojo); }
+/* Franja de confianza */
+.confianza { border-top: 1px solid var(--borde); border-bottom: 1px solid var(--borde); background: #fff; padding: 32px 0; }
+.confianza__fila { display: grid; gap: 24px; }
+.confianza__datos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 32px; }
+.confianza__datos li { display: flex; flex-direction: column; border-left: 3px solid var(--rojo); padding-left: 14px; }
+.confianza__datos strong { color: var(--negro); font-size: 1.15rem; line-height: 1.25; }
+.confianza__datos span { color: var(--texto-suave); font-size: .9rem; }
+.confianza__logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px 44px; }
+.confianza__logos img { height: 44px; width: auto; }
+@media (max-width: 760px) { .confianza__datos { grid-template-columns: 1fr 1fr; } }
 .contenido-lateral { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; align-items: start; }
 .lateral { position: sticky; top: 110px; }
 .bloque-servicio { margin-bottom: 40px; }

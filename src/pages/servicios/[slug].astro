@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CabeceraPagina from '../../components/CabeceraPagina.astro';
+import FranjaConfianza from '../../components/FranjaConfianza.astro';
 import Cta from '../../components/Cta.astro';
 import { servicios } from '../../data/servicios.js';
 import { site } from '../../data/site.js';
@@ -12,7 +13,7 @@ const { s } = Astro.props;
 const otros = servicios.filter((x) => x.slug !== s.slug);
 ---
 <Base titulo={`${s.titulo} en Madrid`} descripcion={s.resumen} imagen={s.imagen}>
-  <CabeceraPagina
+  <CabeceraPagina imagen={s.imagen}
     titulo={s.titulo}
     lead={s.intro}
     migas={[{ label: 'Servicios', href: '/servicios/' }, { label: s.corto }]}
@@ -56,6 +57,8 @@ const otros = servicios.filter((x) => x.slug !== s.slug);
       </aside>
     </div>
   </section>
+
+  <FranjaConfianza />
 
   <Cta />
 </Base>

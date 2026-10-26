@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import CabeceraPagina from '../components/CabeceraPagina.astro';
+import FranjaConfianza from '../components/FranjaConfianza.astro';
 import Cta from '../components/Cta.astro';
 
 const preguntas = [
@@ -18,7 +19,7 @@ const faqLd = {
 };
 ---
 <Base titulo="Cambiar de administrador de fincas" descripcion="Cómo cambiar de administrador de fincas en Madrid en 4 pasos. Qfincas se encarga del traspaso de documentación, cuentas y contratos.">
-  <CabeceraPagina
+  <CabeceraPagina imagen="/img/s-fincas.webp"
     titulo="Cambiar de administrador de fincas"
     lead="Si tu comunidad no está contenta con su administrador, cambiar es sencillo. Como somos abogados, te explicamos qué dice la ley y nos encargamos de todo el traspaso."
     migas={[{ label: 'Cambiar de administrador' }]}
@@ -49,6 +50,8 @@ const faqLd = {
   </section>
 
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
+  <FranjaConfianza />
 
   <Cta titulo="¿Lo llevamos a tu próxima junta?" texto="Te preparamos el presupuesto para que los vecinos puedan decidir." />
 </Base>

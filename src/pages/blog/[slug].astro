@@ -12,7 +12,7 @@ const borrador = e.revisado === false;
 const otras = entradas.filter((x) => x.slug !== e.slug).slice(0, 3);
 ---
 <Base titulo={e.titulo} descripcion={e.resumen} imagen={e.imagen} noindex={borrador}>
-  <CabeceraPagina titulo={e.titulo} lead={e.resumen} migas={[{ label: 'Blog', href: '/blog/' }, { label: e.tipo }]}>
+  <CabeceraPagina imagen="/img/s-secretaria.webp" titulo={e.titulo} lead={e.resumen} migas={[{ label: 'Blog', href: '/blog/' }, { label: e.tipo }]}>
     <p class="etiqueta" style="margin-top:12px">{e.tipo}{e.fecha && ` · ${e.fecha}`}</p>
   </CabeceraPagina>
   <section class="seccion">
