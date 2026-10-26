@@ -60,7 +60,7 @@ export const servicios = [
         items: [
           'Asesoramiento jurídico gratuito sobre la Ley de Propiedad Horizontal.',
           'Resolución de contratos, mediación y reclamación a vecinos.',
-          'Reclamación judicial a morosos sin coste de abogados en las tarifas Media y Premium.',
+          'Reclamación judicial a morosos sin coste de abogados en la tarifa Premium.',
         ],
       },
     ],

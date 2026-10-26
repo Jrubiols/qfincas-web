@@ -71,7 +71,7 @@ export const zonas = [
       { t: 'Rehabilitación y ayudas', d: 'Fachadas, aislamiento, cubiertas y ascensores. Te informamos de las ayudas abiertas para mejorar la eficiencia energética y la accesibilidad, y preparamos la documentación.' },
       { t: 'Comunidades pequeñas', d: 'En una comunidad de ocho o diez vecinos cada euro cuenta: cuentas claras, presupuestos ajustados y un precio adaptado a su tamaño.' },
       { t: 'Garajes grandes', d: 'Garajes de cientos de plazas, con sus contratos de limpieza, ventilación, puertas y control de accesos, y un reparto de gastos justo.' },
-      { t: 'Vecinos que no pagan', d: 'Reclamamos las deudas por la vía amistosa sin coste para la comunidad. Si hay que ir a juicio, en las tarifas Media y Premium no cuesta abogados: se recupera de las costas del moroso.' },
+      { t: 'Vecinos que no pagan', d: 'Reclamamos las deudas por la vía amistosa sin coste para la comunidad. Si hay que ir a juicio, en la tarifa Premium no cuesta abogados: se recupera de las costas del moroso.' },
     ],
     preguntas: [
       { p: '¿Nos ayudáis a pedir subvenciones para la fachada o el aislamiento?', r: 'Sí. Te informamos de las ayudas abiertas, preparamos la documentación y la tramitamos. Según el nivel que contratéis, la tramitación va incluida o se cobra aparte: lo verás en nuestras tarifas.' },

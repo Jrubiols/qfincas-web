@@ -4,23 +4,19 @@ import CabeceraPagina from '../components/CabeceraPagina.astro';
 import Cta from '../components/Cta.astro';
 import { site } from '../data/site.js';
 
-// Niveles y contenido tomados de la oferta oficial de Qfincas (anexo de servicios): Base, Media y Premium.
-// Así lo que ve el presidente en la web coincide con lo que recibe después en la oferta.
+// Niveles iguales que en la plantilla de presupuesto, la hoja de tarifas y el informe para Alberto (25-10-2026).
 // PENDIENTE DE CONFIRMAR CON QFINCAS:
-//  - Precio "desde" de cada tarifa: rellenar `precio` (ej. 'Desde 60 € al mes').
-//  - Juntas extraordinarias y subvenciones: el anexo las incluye en Premium, pero el contrato las factura aparte.
-//    Aquí se muestran como en el anexo hasta que Qfincas decida.
-//  - La lista "Lo que se factura aparte" sale de la cláusula 9 del contrato.
+//  - Precio "desde" de cada tarifa: rellenar `precio` cuando Alberto apruebe la tarifa por unidad.
+//  - Subvenciones: si van incluidas en Premium o se cobran aparte. Aquí se muestran incluidas, como en la plantilla.
 const planes = [
   {
     nombre: 'Base',
-    para: 'Para comunidades pequeñas o presidentes que prefieren hacer ellos las gestiones y quieren las cuentas y los cobros bajo control.',
+    para: 'Para comunidades pequeñas o presidentes que prefieren hacer ellos las gestiones: llevamos la contabilidad, los pagos y las cuentas del año.',
     precio: null,
     puntos: [
-      'Recibos y cobro de cuotas y derramas',
-      'Pago y control de proveedores',
-      'Informe anual de gastos, balance y presupuesto',
-      'Reclamación extrajudicial de impagos sin coste',
+      'Contabilidad y pago a proveedores',
+      'Informe anual de gastos y balance',
+      'Custodia de la documentación y cambio de datos de los propietarios',
       'Nuestra red de reparadores de confianza',
     ],
   },
@@ -31,26 +27,26 @@ const planes = [
     destacado: true,
     previo: 'Todo lo de Base, y además:',
     puntos: [
-      'Convocatoria, asistencia a la junta y actas',
-      'Contabilidad por partida doble con informes periódicos',
-      'Averías, siniestros y seguros',
-      'Control de obras y presupuestos comparables',
-      'Nóminas de empleados e impuestos de la comunidad',
-      'Juicio a morosos sin coste de abogados',
+      'Recibos, cobro de cuotas y gestiones amistosas con morosos',
+      'Presupuesto ordinario y contabilidad por partida doble',
+      'Junta ordinaria: convocatoria, asistencia, acta y notificación de acuerdos',
+      'Atención al presidente, averías y control de reparaciones',
+      'Nóminas, seguros sociales e impuestos de la comunidad',
+      'TuComunidad para todos los vecinos y móvil de contacto 24 horas',
     ],
   },
   {
     nombre: 'Premium',
-    para: 'Para quien quiere olvidarse de todo: obras, subvenciones, asuntos legales y juntas extraordinarias.',
+    para: 'Para quien quiere olvidarse de todo: asuntos legales, morosos, obras y subvenciones.',
     precio: null,
     previo: 'Todo lo de Media, y además:',
     puntos: [
-      'Juntas extraordinarias incluidas',
-      'Móvil de contacto 24 horas',
+      'Una junta extraordinaria al año',
       'Extracto contable mensual a cada propietario',
+      'Juicio a morosos sin coste de abogados',
       'Asesoramiento jurídico y fiscal integral',
       'Plan de mantenimiento y consultas a arquitectos',
-      'Tramitación de subvenciones y financiación',
+      'Tramitación de subvenciones',
     ],
   },
 ];
@@ -61,59 +57,44 @@ const tabla = [
   {
     grupo: 'Cuentas y cobros',
     filas: [
-      { t: 'Recibos y cobro de cuotas y derramas', desde: 0 },
-      { t: 'Pago y control de proveedores', desde: 0 },
-      { t: 'Informe anual de gastos, balance y presupuesto', desde: 0 },
+      { t: 'Contabilidad de la comunidad y pago a proveedores', desde: 0 },
+      { t: 'Informe anual de gastos y balance', desde: 0 },
+      { t: 'Emisión de recibos y presentación al banco de la comunidad', desde: 1 },
+      { t: 'Gestiones amistosas de cobro a los morosos', desde: 1 },
+      { t: 'Elaboración del presupuesto ordinario', desde: 1 },
       { t: 'Contabilidad por partida doble (Plan General de Contabilidad)', desde: 1 },
-      { t: 'Informes periódicos y comparación de cada gasto con el año anterior', desde: 1 },
-      { t: 'Facturas a disposición de cualquier propietario', desde: 1 },
       { t: 'Extracto contable mensual a cada propietario', desde: 2 },
-      { t: 'Plan de control económico y negociación con proveedores', desde: 2 },
     ],
   },
   {
-    grupo: 'Impagos',
-    filas: [
-      { t: 'Reclamación extrajudicial sin coste', desde: 0 },
-      { t: 'Reclamación judicial sin coste de abogados', desde: 1 },
-    ],
-  },
-  {
-    grupo: 'Juntas y documentación',
+    grupo: 'Juntas',
     filas: [
       { t: 'Convocatoria y asistencia a la junta ordinaria', desde: 1 },
-      { t: 'Actas, notificaciones y ejecución de los acuerdos', desde: 1 },
-      { t: 'Custodia de actas, contratos y documentos', desde: 1 },
-      { t: 'Juntas extraordinarias', desde: 2 },
+      { t: 'Secretario de la junta: redacción del acta', desde: 1 },
+      { t: 'Notificación de los acuerdos de la junta ordinaria', desde: 1 },
+      { t: 'Una junta extraordinaria al año', desde: 2 },
     ],
   },
   {
-    grupo: 'Edificio y proveedores',
+    grupo: 'Gestión diaria',
     filas: [
-      { t: 'Red de reparadores y empresas de mantenimiento', desde: 0 },
-      { t: 'Averías, siniestros y reclamaciones a la aseguradora', desde: 1 },
-      { t: 'Control de obras, presupuestos y facturas', desde: 1 },
-      { t: 'Descuentos con empresas de mantenimiento', desde: 1 },
-      { t: 'Plan de mantenimiento y consultas a arquitectos e ingenieros', desde: 2 },
-      { t: 'Tramitación de subvenciones y financiación de obras', desde: 2 },
-      { t: 'Reclamación de defectos de construcción en obra nueva', desde: 2 },
-    ],
-  },
-  {
-    grupo: 'Laboral, fiscal y legal',
-    filas: [
-      { t: 'Nóminas y seguros sociales de los empleados de la finca', desde: 1 },
-      { t: 'Impuestos y requerimientos de Hacienda', desde: 1 },
-      { t: 'Mediación entre vecinos', desde: 1 },
-      { t: 'Asesoramiento jurídico y fiscal integral', desde: 2 },
-    ],
-  },
-  {
-    grupo: 'Atención',
-    filas: [
-      { t: 'Atención personal y aviso de averías 24 horas', desde: 0 },
+      { t: 'Custodia de la documentación de la comunidad', desde: 0 },
+      { t: 'Cambio de datos de los propietarios', desde: 0 },
+      { t: 'Red de reparadores de confianza', desde: 0 },
+      { t: 'Atención al presidente para la gestión ordinaria de la comunidad', desde: 1 },
+      { t: 'Averías e incidencias: aviso al reparador y seguimiento', desde: 1 },
+      { t: 'Control de las reparaciones ordinarias y de sus facturas', desde: 1 },
+      { t: 'Nóminas, seguros sociales e impuestos de la comunidad', desde: 1 },
       { t: 'TuComunidad: cuentas, actas y avisos desde el móvil', desde: 1, nota: '+0,50 € por vecino al mes' },
-      { t: 'Móvil de contacto 24 horas', desde: 2 },
+      { t: 'Móvil de contacto 24 horas', desde: 1 },
+    ],
+  },
+  {
+    grupo: 'Asuntos legales y edificio',
+    filas: [
+      { t: 'Juicio a morosos sin coste de abogados', desde: 2 },
+      { t: 'Asesoramiento jurídico y fiscal integral', desde: 2 },
+      { t: 'Plan de mantenimiento y tramitación de subvenciones', desde: 2 },
     ],
   },
 ];
@@ -123,7 +104,7 @@ const preguntas = [
   { p: '¿A nombre de quién está la cuenta del banco?', r: 'A nombre de la comunidad, y la controla el presidente. No pagamos ninguna factura sin el visto bueno de la junta de gobierno.' },
   { p: '¿Qué contabilidad lleva?', r: 'Partida doble según el Plan General de Contabilidad, no una lista de cobros y pagos. Comparamos cada gasto con el del año anterior y con el presupuesto aprobado.' },
   { p: '¿Cada cuánto informa al presidente?', r: 'Cada semana, con un informe económico. Cada propietario recibe además un informe trimestral y un resumen anual.' },
-  { p: '¿Cuánto cuesta reclamar a un moroso?', r: 'La reclamación extrajudicial no cuesta nada. En las tarifas Media y Premium, el juicio tampoco cuesta abogados a la comunidad: cobramos de las costas que paga el moroso.' },
+  { p: '¿Cuánto cuesta reclamar a un moroso?', r: 'En las tarifas Media y Premium, las gestiones amistosas de cobro van incluidas. En Premium, el juicio tampoco cuesta abogados a la comunidad: cobramos de las costas que paga el moroso.' },
   { p: '¿Quién elige a las empresas de las obras?', r: 'La junta. Pedimos presupuestos comparables y los analizamos, pero no participamos en la elección de contratistas ni proveedores.' },
   { p: '¿Tiene abogados en el despacho?', r: `Sí. Somos administradores de fincas y abogados colegiados en el Ilustre Colegio de la Abogacía de Madrid (${site.colegiado}).` },
   { p: '¿Está colegiado y asegurado?', r: `Sí. Estamos colegiados en el Colegio Profesional de Administradores de Fincas de Madrid (${site.colegiadoCaf}), con seguro de responsabilidad civil y una fianza que avala la gestión del dinero de la comunidad.` },
@@ -131,15 +112,15 @@ const preguntas = [
 ];
 
 const aparte = [
-  'Certificados que pide un propietario, como el de estar al corriente de pago para vender su piso.',
-  'Cualquier gestión particular de un propietario: se le cobra a él, no a la comunidad.',
-  'Correos, burofax, fotocopias y otros gastos de envío.',
-  'Tasas judiciales y poderes ante notario, si hay que ir a juicio.',
-  'Juicios distintos de la reclamación a morosos.',
-  'Licencias, y declaraciones de Hacienda por alquilar zonas comunes como la portería o la azotea.',
-  'Cambio de banco de la comunidad.',
-  'Juntas que acaban después de las 21:30 o se celebran en fin de semana o festivo.',
-  'Juntas extraordinarias y tramitación de subvenciones, salvo en la tarifa Premium.',
+  'Juntas extraordinarias, salvo una al año en Premium, y las juntas que acaban después de las 21:30 o se celebran en fin de semana o festivo.',
+  'Presupuestos extraordinarios (derramas), inscripciones en el Registro de la Propiedad y legalización del libro de actas.',
+  'Certificados que pide un propietario, como el de estar al corriente de pago para vender su piso, y sus gestiones particulares: se le cobran a él, no a la comunidad.',
+  'Cambio de banco o de firmas, certificado digital de la comunidad y respuestas a requerimientos de la Administración.',
+  'Siniestros con la aseguradora, mantenimientos obligatorios e inspecciones técnicas.',
+  'Obras extraordinarias, licencias y subvenciones, salvo las que incluya Premium.',
+  'Alquiler de zonas comunes, como la portería o la azotea, y sus declaraciones de Hacienda.',
+  'Asuntos legales: apercibimientos, normas de régimen interior, contratos, denuncias y juicios distintos de la reclamación a morosos de Premium.',
+  'Correos, burofax, fotocopias, tasas y notario, a su coste real y sin recargo.',
 ];
 ---
 <Base titulo="Tarifas de administración de fincas" descripcion="Tres tarifas de administración de fincas, Base, Media y Premium, con todo lo que incluye cada una y lo que se cobra aparte. Pide presupuesto sin compromiso.">
